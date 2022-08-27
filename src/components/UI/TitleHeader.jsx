@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-// import { useNavigate } from "react-router-dom";
 import titleHeaderImg from "../../static/titleHeader.jpg";
 
 const TitleHeader = ({ title }) => {
   return (
     <TitleHeaderBox>
       <HomeTitle>{title}</HomeTitle>
-      {/* <DetailTitle>detail</DetailTitle>
-      <WriteTitle navigate={'/wirte'}>write</WriteTitle> */}
     </TitleHeaderBox>
   );
 };
@@ -25,7 +22,6 @@ const TitleHeaderBox = styled.div`
   background-position: center;
   background-size: cover;
   background-color: #eee;
-  /* font-weight: bold; */
   font-family: "IM_Hyemin-Bold";
 `;
 const HomeTitle = styled.div`
@@ -33,16 +29,5 @@ const HomeTitle = styled.div`
   font-size: 30px;
   color: #fff;
 `;
-// const WriteTitle = styled.div`
-//   display: ${ props => props.navigate('/wirte')? 'block' : 'none'};
-//   margin: auto;
-//   font-size: 30px;
-//   color: #fff;
-// `
-// const DetailTitle = styled.div.attrs(props => ({navigate:'/wirte',}))`
-//   margin: auto;
-//   font-size: 30px;
-//   color: #fff;
-// `
 
 export default TitleHeader;
