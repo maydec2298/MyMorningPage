@@ -1,15 +1,8 @@
 import React from "react";
-import Layout from "../components/UI/Layout"
-import TitleHeader from "../components/UI/TitleHeader";
+import Layout from "../components/UI/Layout";
 
 const Detail = () => {
-  return (
-    <Layout>
-      <TitleHeader>상세보기</TitleHeader>
-
-    </Layout>
-  )
-    
+  return <Layout title="See Details"></Layout>;
 };
 
 export default Detail;

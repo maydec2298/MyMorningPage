@@ -7,8 +7,11 @@ const Logo = () => {
 
   return (
     <LogoBox
-      src="http://localhost:3000/Logo.png" alt='logo image'
-      onClick={() => {navigate('/'); }}
+      src="http://localhost:3000/Logo.png"
+      alt="logo image"
+      onClick={() => {
+        navigate("/");
+      }}
     />
   );
 };
@@ -16,5 +19,5 @@ const Logo = () => {
 const LogoBox = styled.img`
   width: 50px;
   cursor: pointer;
-`
+`;
 export default Logo;
