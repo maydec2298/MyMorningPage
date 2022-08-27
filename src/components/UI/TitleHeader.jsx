@@ -15,7 +15,7 @@ const TitleHeader = ({children}) => {
 const TitleHeaderBox = styled.div`
   height: 200px;
   display: flex;
-  background-image : linear-gradient(0deg, rgba(0,0,0, 0.5), rgba(	31, 106, 173, 0.5)), url(${titleHeaderImg});
+  background-image : linear-gradient(0deg, rgba(0,0,0, 0.5), rgba(	0,0,0, 0.5)), url(${titleHeaderImg});
   background-position : center;
   background-size : cover;
   background-color: #eee;

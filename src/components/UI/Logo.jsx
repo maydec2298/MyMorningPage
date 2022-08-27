@@ -1,21 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { BsBook } from "react-icons/bs";
+
 
 const Logo = () => {
   let navigate = useNavigate();
 
   return (
-    <LogoBox
-      src="http://localhost:3000/Logo.png" alt='logo image'
-      onClick={() => {navigate('/'); }}
-    />
+      <LogoBox>
+        <BsBook
+          onClick={() => { navigate('/'); }}
+          className="logo"
+        />
+      </LogoBox>
   );
 };
 
-const LogoBox = styled.img`
-  width: 50px;
-  margin: 10px;
+
+
+const LogoBox = styled.div`
+  width: 40px;
+  margin-top: 10px;
+  margin-left: 5px;
   cursor: pointer;
+
+.logo {
+font-size:30px;
+color:#13335C;
+}
 `
+
 export default Logo;
