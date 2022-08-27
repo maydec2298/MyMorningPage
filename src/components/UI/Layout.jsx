@@ -16,7 +16,7 @@ const LayoutBox = styled.div`
   min-width: 400px;
   overflow: hidden;
   margin: auto;
-  border: 1px solid #000;
+ 
 `
 
 export default Layout;
