@@ -1,9 +1,8 @@
 import React from "react";
-
 import Layout from "../components/UI/Layout";
 import Container from "../components/UI/Container";
 import Button from "../components/UI/Button";
-
+import PostList from "../components/Posts/PostList";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -11,15 +10,16 @@ const Home = () => {
 
   return (
     <Layout title="My Morning Page">
+      <Button
+        add
+        onClick={() => {
+          navigate("/write");
+        }}
+      >
+        추가하기
+      </Button>
       <Container>
-        <Button
-          add
-          onClick={() => {
-            navigate("/write");
-          }}
-        >
-          글쓰기
-        </Button>
+        <PostList />
       </Container>
     </Layout>
   );
