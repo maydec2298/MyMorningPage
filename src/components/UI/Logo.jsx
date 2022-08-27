@@ -15,6 +15,7 @@ const Logo = () => {
 
 const LogoBox = styled.img`
   width: 50px;
+  margin: 10px;
   cursor: pointer;
 `
 export default Logo;
