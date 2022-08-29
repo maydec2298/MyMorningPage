@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { BsBook } from "react-icons/bs";
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { BsBook } from 'react-icons/bs';
 
 const Logo = () => {
   let navigate = useNavigate();
@@ -10,9 +10,9 @@ const Logo = () => {
     <LogoBox>
       <BsBook
         onClick={() => {
-          navigate("/");
+          navigate('/');
         }}
-        className="logo"
+        className='logo'
       />
     </LogoBox>
   );
