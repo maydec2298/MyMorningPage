@@ -1,15 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import Button from "../UI/Button";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
+import useInput from "../../hooks/useInput";
 
 const PostForm = () => {
   const navigate = useNavigate()
 
-  const [userId, setUserId] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [userId, onChangeUserIdHandler] = useInput()
+  const [title, onChangeTitleHandler] = useInput()
+  const [content, onChangeContentHandler] = useInput()
+
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
@@ -24,40 +25,34 @@ const PostForm = () => {
         <NameBox>
           <AllTitleFont>Name</AllTitleFont>
           <AllInputBox>
-          <NameInput
-          type="text"
-          value={userId}
-          onChange={(e)=> {
-            setUserId(e.target.value);
-          }}
+            <NameInput
+            type="text"
+            value={userId}
+            onChange={onChangeUserIdHandler}
             />
-            </AllInputBox>
+          </AllInputBox>
         </NameBox>
 
         <TitleBox>
           <AllTitleFont>Title</AllTitleFont>
-                    <AllInputBox>
-        <TitleInput
-          type="text"
-          value={title}
-          onChange={(e)=> {
-          setTitle(e.target.value);
-          }}
+          <AllInputBox>
+            <TitleInput
+            type="text"
+            value={title}
+            onChange={onChangeTitleHandler}
             />
-            </AllInputBox>
+          </AllInputBox>
         </TitleBox>
         
-          <ContentBox>
+        <ContentBox>
           <AllTitleFont>Content</AllTitleFont>
           <AllInputBox>
-        <ContentInput
-          type="text"
-          value={content}
-          onChange={(e)=> {
-          setContent(e.target.value);
-          }}
+            <ContentInput
+            type="text"
+            value={content}
+            onChange={onChangeContentHandler}
             />
-            </AllInputBox>
+          </AllInputBox>
         </ContentBox>
 
 
@@ -67,7 +62,7 @@ const PostForm = () => {
       </FormButtonbox>
         
       </PostFormBox>
-     </form>
+    </form>
     
   )
 };
