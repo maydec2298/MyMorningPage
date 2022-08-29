@@ -12,7 +12,9 @@ const StyledButton = styled.button`
   line-height: 1.5;
   margin: 10px;
   border: 1px solid lightgray;
+  
 
+  //작성하기,추가하기
   ${(props) =>
   props.add &&
   css`
@@ -22,6 +24,7 @@ const StyledButton = styled.button`
   `
   }
 
+//취소하기
   ${(props) =>
   props.cancel &&
   css`
@@ -31,6 +34,7 @@ const StyledButton = styled.button`
   `
   }
 
+//삭제하기
   ${(props) =>
   props.delete &&
   css`
@@ -40,6 +44,7 @@ const StyledButton = styled.button`
   `
   }
 
+//수정하기
   ${(props) =>
   props.edit &&
   css`
