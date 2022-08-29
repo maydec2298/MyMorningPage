@@ -11,12 +11,15 @@ const PostForm = () => {
   const [title, onChangeTitleHandler] = useInput()
   const [content, onChangeContentHandler] = useInput()
 
+  // 홈 페이지로 이동
+  const gotoHome = () => {
+    { navigate('/') }
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
     if (userId === "" || title === "" || content === "") return alert("빠짐없이 입력해주세요!")
-    
-}
+  };
   
   return (
 
@@ -57,8 +60,8 @@ const PostForm = () => {
 
 
       <FormButtonbox>
-        <Button cancel onClick={() => { navigate('/') }}>취소하기</Button>
-        <Button add onClick={() => { navigate('/') }}>작성하기</Button>
+        <Button cancel onClick={gotoHome}>취소하기</Button>
+        <Button add onClick={gotoHome}>작성하기</Button>
       </FormButtonbox>
         
       </PostFormBox>
@@ -128,5 +131,6 @@ const ContentInput = styled.input`
 
 const FormButtonbox = styled.div`
   float:right;
+  margin : 20px 0;
 `
 export default PostForm;
