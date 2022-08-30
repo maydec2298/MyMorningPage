@@ -1,14 +1,11 @@
 import react, { useState } from 'react';
 import Comment from './Comment';
+import CommentForm from './CommentForm';
 const CommentList = ({ list }) => {
-  const deleteComment = () => {
-    list.filter((com) => {
-      return com.id == Comment.id;
-    });
-  };
   return (
     <div>
       <h1>댓글</h1>
+      <CommentForm></CommentForm>
       <div>
         {list.map((list, idx) => {
           return (
