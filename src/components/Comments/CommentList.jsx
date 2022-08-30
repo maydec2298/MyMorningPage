@@ -1,19 +1,29 @@
-import React from 'react';
-
-const CommentList = (props) => {
+import react, { useState } from 'react';
+import Comment from './Comment';
+const CommentList = ({ list }) => {
+  const deleteComment = () => {
+    list.filter((com) => {
+      return com.id == Comment.id;
+    });
+  };
   return (
     <div>
       <h1>댓글</h1>
       <div>
-        {props.feedContent.map((feedContent, i) => (
-          <Comment key={i} feedContent={feedContent} />
-        ))}
-        {props.feedName.map((feedName, i) => (
-          <Comment key={i} feedName={feedName} />
-        ))}
+        {list.map((list, idx) => {
+          return (
+            <div key={idx}>
+              <Comment list={list}></Comment>
+              <button>수정</button>
+              <button>삭제</button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
 export default CommentList;
+
+//CommentForm과 map메소드Comment

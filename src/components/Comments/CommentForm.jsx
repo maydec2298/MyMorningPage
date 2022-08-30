@@ -1,42 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import CommentList from './CommentList';
 
 const CommentForm = () => {
-  const [inputName, setInputName] = useState('');
-  const [inputContent, setInputContent] = useState('');
-  const [todoList, setTodoList] = useState([]);
-  const useDispatch = useDispatch();
+  const [list, setList] = useState([]);
+  const name = useRef(null);
+  const content = useRef(null);
 
-  // 닉네임 값 받는 핸들러
-  const onChangeHandler = (event) => {
-    const inputNameValue = event.target.value;
-    setInputName(inputNameValue);
-  };
-  // 내용 값 받는 핸들러
-  const onChangeHandler2 = (event) => {
-    const inputContentValue = event.target.value;
-    setInputContent(inputContentValue);
-  };
-  // 코멘트 추가버튼 핸들러
-  const addItem = () => {
-    setTodoList([...todoList, inputName, inputContent]);
+  const addList = () => {
+    const list_data = {
+      name: name.current.value,
+      content: content.current.value,
+    };
+
+    // console.log(list_data);
+    setList([...list, list_data]);
+
+    name.current.value = '';
+    content.current.value = '';
   };
   return (
     <div>
       <div>
-        <label htmlFor='userName'>닉네임</label>
-        <input type='text' id='userName' name='userName' value={inputName} onChange={onChangeHandler} />
-      </div>
-      <div>
-        <label htmlFor='content'>댓글</label>
-        <textarea id='content' name='content' value={inputContent} onChange={onChangeHandler2} />
-      </div>
-      <div>
+        <span>닉네임</span>
+        <input type='text' ref={name} />
+        <span>댓글</span>
+        <textarea name='' id='' cols='30' rows='5' ref={content}></textarea>
         <button>취소</button>
-        <button onClick={addItem}>작성</button>
+        <button onClick={addList}>작성</button>
       </div>
-      <CommentList todoList={todoList} />
+      <div>
+        <CommentList list={list} />
+      </div>
     </div>
   );
 };
