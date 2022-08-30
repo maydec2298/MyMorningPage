@@ -1,25 +1,26 @@
-import React from "react";
-import Button from "../UI/Button";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Button from "../UI/Button";
 import useInput from "../../hooks/useInput";
-import { nanoid } from "nanoid";
-import { useDispatch } from "react-redux";
-import { __addPost } from "../../redux/modules/postsSlice";
+import { clearTodo, __addPost } from "../../redux/modules/postsSlice";
 
 const PostForm = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const isSuccess = useSelector((state) => state.posts.isSuccess);
 
   const [userId, onChangeUserIdHandler] = useInput();
   const [title, onChangeTitleHandler] = useInput();
   const [content, onChangeContentHandler] = useInput();
 
-  // 홈 페이지로 이동
-  const gotoHome = () => {
-    navigate("/");
-  };
+  useEffect(() => {
+    if (!isSuccess) return;
+    if (isSuccess) navigate("/");
+
+    return () => dispatch(clearTodo());
+  }, [dispatch, isSuccess, navigate]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -28,14 +29,13 @@ const PostForm = () => {
 
     dispatch(
       __addPost({
-        postId: nanoid(),
-        userId,
-        title,
-        content,
+        userId: userId,
+        title: title,
+        content: content,
       })
     );
 
-    gotoHome();
+    navigate("/");
   };
 
   return (
@@ -46,6 +46,7 @@ const PostForm = () => {
           <AllInputBox>
             <NameInput
               type="text"
+              name="userId"
               value={userId}
               onChange={onChangeUserIdHandler}
               placeholder="닉네임을 입력해주세요.( 5자 이내 )"
@@ -57,6 +58,7 @@ const PostForm = () => {
           <AllInputBox>
             <TitleInput
               type="text"
+              name="title"
               value={title}
               onChange={onChangeTitleHandler}
               placeholder="제목을 입력해주세요.( 50자 이내 )"
@@ -69,6 +71,7 @@ const PostForm = () => {
           <AllInputBox>
             <ContentInput
               type="text"
+              name="content"
               value={content}
               onChange={onChangeContentHandler}
               placeholder="내용을 입력해주세요.( 200자 이내 )"
@@ -77,7 +80,7 @@ const PostForm = () => {
         </ContentBox>
 
         <FormButtonbox>
-          <Button cancel onClick={gotoHome}>
+          <Button cancel onClick={() => navigate("/")}>
             취소
           </Button>
           <Button add>작성</Button>
