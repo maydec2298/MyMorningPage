@@ -13,11 +13,12 @@ const PostForm = () => {
   const dispatch = useDispatch();
   const nanoidId = nanoid();
 
+  // CustumHook:useInput
   const [userId, onChangeUserIdHandler] = useInput()
   const [title, onChangeTitleHandler] = useInput()
   const [content, onChangeContentHandler] = useInput()
 
-
+// onSubmit
   const onSubmitHandler = (e) => {
     e.preventDefault()
     
@@ -31,6 +32,7 @@ const PostForm = () => {
       })
     );
    
+    //작성한 post의 상세 페이지로 이동
     navigate(`/detail/${nanoidId}`) 
   };
 
@@ -38,6 +40,8 @@ const PostForm = () => {
 
     <form onSubmit={onSubmitHandler}>
       <PostFormBox>
+
+{/* 이름 */}
         <NameBox>
           <AllTitleFont>Name</AllTitleFont>
           <AllInputBox>
@@ -53,6 +57,7 @@ const PostForm = () => {
           </AllInputBox>
         </NameBox>
 
+{/* 제목 */}
         <TitleBox>
           <AllTitleFont>Title</AllTitleFont>
           <AllInputBox>
@@ -66,7 +71,8 @@ const PostForm = () => {
             />
           </AllInputBox>
         </TitleBox>
-        
+
+{/* 내용 */}
         <ContentBox>
           <AllTitleFont>Content</AllTitleFont>
           <AllInputBox>
@@ -81,7 +87,7 @@ const PostForm = () => {
           </AllInputBox>
         </ContentBox>
 
-
+{/* 버튼 */}
         <FormButtonbox>
           <Button cancel onClick={useCallback(() => {navigate('/')}, [navigate])}>취소</Button>
           <Button add >작성</Button>
