@@ -1,4 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+// import produce from "immer";
+// import React from "react";
+// import { isDev, serverUrl } from ".";
+
+// const useImmerReducer = (reducer, initial) =>
+//   React.useReducer(produce(reducer), initial);
 
 /* post property - postId, userId, content, editToggle
   const post = {
@@ -6,59 +13,97 @@ import { createSlice } from "@reduxjs/toolkit";
     userId: "",
     title: "",
     content: "", 
-    editToggle: false
   }
 */
 
+export const __getPosts = createAsyncThunk(
+  "posts/getPosts",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.get("http://localhost:3001/posts");
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __addPost = createAsyncThunk(
+  "posts/addPost",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.post("http://localhost:3001/posts", payload);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.delete(`http://localhost:3001/posts/${postId}`)
+    }
+  }
+)
+
 const initialState = {
-  posts: [
-    {
-      postId: 1,
-      userId: "으아아",
-      title: "안녕하세요",
-      content: "test입니다.",
-      editToggle: false,
-    },
-    {
-      postId: 2,
-      userId: "뾰로롱",
-      title: "hihi",
-      content: "test2입니다.",
-      editToggle: false,
-    },
-    {
-      postId: 3,
-      userId: "제곧네",
-      title: "제목이곧...",
-      content: "ㅈㄱㄴ",
-      editToggle: false,
-    },
-  ],
+  posts: [],
+  isLoading: false,
+  error: null,
+  isSuccess: false,
 };
 
 const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    addPost: (state, action) => {
-      state.posts = [...state.posts, action.payload]; // payload: 새로운 게시글 객체
+    clearTodo: (state, action) => {
+      state.isSuccess = false
+    }
+  },
+  extraReducers: {
+    // getPosts : posts 전체 목록을 가지고 옴
+    [__getPosts.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getPosts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = action.payload;
+    },
+    [__getPosts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
 
-    deletePost: (state, action) => {
-      state.posts = state.posts.filter(
-        (post) => post.postId !== action.payload
-      ); //payload: 삭제될 게시글의 postId
+    // addPost : post를 db에 추가
+    [__addPost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__addPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = [...state.posts, action.payload];
+    },
+    [__addPost.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
 
-    editToggleComment: (state, action) => {
-      state.posts = state.posts.map((post) =>
-        post.postId === action.payload
-          ? { ...post, editToggle: !post.editToggle }
-          : post
-      );
+    // deletePost : postId가 일치하는 객체를 삭제
+    [__deletePost.pending]: (state) => {
+      state.isLoading = true
     },
+    [__deletePost.fulfilled]: (state, action) => {
+      state.posts = state.posts.filter((post) => post.postId !== action.payload)
+    },
+    [__deletePost.rejected]: (state, action) => {
+      state.isLoading = false
+      state.error = action.payload
+    }
   },
 });
 
-export const { addPost, deletePost, editToggle } = postsSlice.actions;
+export const {} = postsSlice.actions;
 export default postsSlice.reducer;

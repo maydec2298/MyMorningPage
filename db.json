@@ -1,16 +1,49 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "postId": 1,
+      "userId": "으아아",
+      "title": "안녕하세요",
+      "content": "test입니다.",
+      "editToggle": false
+    },
+    {
+      "postId": 2,
+      "userId": "뾰로롱",
+      "title": "hihi",
+      "content": "test2입니다.",
+      "editToggle": false
+    },
+    {
+      "postId": 3,
+      "userId": "제곧네",
+      "title": "제목이곧...",
+      "content": "ㅈㄱㄴ",
+      "editToggle": false
     }
   ],
+  
   "comments": [
     {
+      "postId": 1,
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "userId": "1에 댓글",
+      "content": "무플방지위원회",
+      "editToggle": false
+    },
+    {
+      "postId": 2,
+      "id": 1,
+      "userId": "userId",
+      "content": "commentContent",
+      "editToggle": false
+    },
+    {
+      "postId": 1,
+      "id": 2,
+      "userId": "userId",
+      "content": "commentContent",
+      "editToggle": false
     }
   ]
 }
