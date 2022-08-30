@@ -1,11 +1,11 @@
-import React from 'react';
-import Button from '../UI/Button';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import useInput from '../../hooks/useInput';
-import { nanoid } from 'nanoid';
-import { useDispatch } from 'react-redux';
-import { addPost } from '../../redux/modules/postsSlice';
+import React from "react";
+import Button from "../UI/Button";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import useInput from "../../hooks/useInput";
+import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { __addPost } from "../../redux/modules/postsSlice";
 
 const PostForm = () => {
   const navigate = useNavigate();
@@ -18,20 +18,20 @@ const PostForm = () => {
 
   // 홈 페이지로 이동
   const gotoHome = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (userId === '' || title === '' || content === '') return alert('모든 항목을 입력해주세요');
+    if (userId === "" || title === "" || content === "")
+      return alert("모든 항목을 입력해주세요");
 
     dispatch(
-      addPost({
+      __addPost({
         postId: nanoid(),
         userId,
         title,
         content,
-        editToggle: false,
       })
     );
 
@@ -44,20 +44,35 @@ const PostForm = () => {
         <NameBox>
           <AllTitleFont>Name</AllTitleFont>
           <AllInputBox>
-            <NameInput type='text' value={userId} onChange={onChangeUserIdHandler} placeholder='닉네임을 입력해주세요.( 5자 이내 )' />
+            <NameInput
+              type="text"
+              value={userId}
+              onChange={onChangeUserIdHandler}
+              placeholder="닉네임을 입력해주세요.( 5자 이내 )"
+            />
           </AllInputBox>
         </NameBox>
         <TitleBox>
           <AllTitleFont>Title</AllTitleFont>
           <AllInputBox>
-            <TitleInput type='text' value={title} onChange={onChangeTitleHandler} placeholder='제목을 입력해주세요.( 50자 이내 )' />
+            <TitleInput
+              type="text"
+              value={title}
+              onChange={onChangeTitleHandler}
+              placeholder="제목을 입력해주세요.( 50자 이내 )"
+            />
           </AllInputBox>
         </TitleBox>
 
         <ContentBox>
           <AllTitleFont>Content</AllTitleFont>
           <AllInputBox>
-            <ContentInput type='text' value={content} onChange={onChangeContentHandler} placeholder='내용을 입력해주세요.( 200자 이내 )' />
+            <ContentInput
+              type="text"
+              value={content}
+              onChange={onChangeContentHandler}
+              placeholder="내용을 입력해주세요.( 200자 이내 )"
+            />
           </AllInputBox>
         </ContentBox>
 
@@ -81,7 +96,7 @@ const PostFormBox = styled.div`
 `;
 
 const AllTitleFont = styled.h3`
-  font-family: 'IM_Hyemin-Bold';
+  font-family: "IM_Hyemin-Bold";
   width: 150px;
   height: 30px;
   line-height: 30px;
@@ -114,7 +129,7 @@ const NameInput = styled.input`
   float: left;
   padding: 10px 0 10px 15px;
   font-size: 15px;
-  font-family: 'IM_Hyemin-Regular';
+  font-family: "IM_Hyemin-Regular";
 `;
 
 const TitleInput = styled.input`
@@ -125,7 +140,7 @@ const TitleInput = styled.input`
   margin-top: 17px;
   padding: 10px 0 10px 15px;
   font-size: 15px;
-  font-family: 'IM_Hyemin-Regular';
+  font-family: "IM_Hyemin-Regular";
 `;
 const ContentInput = styled.textarea`
   border: 1px solid #999;
@@ -136,7 +151,7 @@ const ContentInput = styled.textarea`
   padding: 10px 15px;
   line-height: 1.8;
   font-size: 15px;
-  font-family: 'IM_Hyemin-Regular';
+  font-family: "IM_Hyemin-Regular";
 `;
 
 const FormButtonbox = styled.div`
