@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import Button from "../UI/Button";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -17,9 +17,9 @@ const PostForm = () => {
   const [content, onChangeContentHandler] = useInput()
 
   // 홈 페이지로 이동
-  const gotoHome = () => {
+  const gotoHome = useCallback(() => {
     navigate('/') 
-  };
+  },[]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
