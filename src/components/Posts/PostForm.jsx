@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid'
 import { useDispatch } from "react-redux";
 import { addPost } from "../../redux/modules/postsSlice"
 
+
 const PostForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const PostForm = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
-    if (userId === "" || title === "" || content === "") return alert("빠짐없이 입력해주세요!")
+    if (userId === "" || title === "" || content === "") return alert("모든 항목을 입력해주세요")
   
     dispatch(
       addPost({
@@ -35,6 +36,7 @@ const PostForm = () => {
     );
    
     gotoHome()
+
   };
   
 
@@ -80,8 +82,8 @@ const PostForm = () => {
 
 
       <FormButtonbox>
-        <Button cancel onClick={gotoHome}>취소하기</Button>
-        <Button add >작성하기</Button>
+        <Button cancel onClick={gotoHome}>취소</Button>
+        <Button add >작성</Button>
       </FormButtonbox>
         
   
@@ -168,6 +170,6 @@ const ContentInput = styled.textarea`
 
 const FormButtonbox = styled.div`
   float:right;
-  margin : 20px 0;
+  margin : 10px 0;
 `
 export default PostForm;
