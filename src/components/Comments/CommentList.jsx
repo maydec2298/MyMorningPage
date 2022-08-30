@@ -8,8 +8,6 @@ const CommentList = () => {
       {/* <h1>댓글</h1> */}
       <CommentForm></CommentForm>
       <Comment></Comment>
-      <Comment></Comment>
-      <Comment></Comment>
     </div>
   );
 };

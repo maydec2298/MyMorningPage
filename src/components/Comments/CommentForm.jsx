@@ -1,40 +1,28 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 import Button from '../UI/Button';
 const CommentForm = () => {
-  const [inputName, setInputName] = useState('');
-  const [inputContent, setInputContent] = useState('');
-
-  // const [feedName, setFeedName] = useState('');
-  // const [feedContent, setFeedContent] = useState('');
+  const [inputName, onChangeNameIdHandler] = useInput();
+  const [inputContent, onChangeContentHandler] = useInput();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (inputName === '' || inputContent === '') return alert('빠짐 없이 입력해 주세요!');
   };
-  const onChangeNameHandler = (e) => {
-    const inputNameValue = e.target.value;
-    setInputName(inputNameValue);
-    //input 입력값
-  };
 
-  const onChangeContentHandler = (e) => {
-    const inputContentValue = e.target.value;
-    setInputContent(inputContentValue);
-    //input 입력값
-  };
   return (
     <ContainerDiv>
       <form onSubmit={onSubmitHandler}>
         <FlexDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <input type='text' id='name' onChange={onChangeNameHandler} value={inputName} />
+            <Input type='text' id='name' onChange={onChangeNameIdHandler} value={inputName} />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <textarea name='' id='content' cols='40' rows='5' onChange={onChangeContentHandler} value={inputContent}></textarea>
+            <TextArea name='' id='content' cols='40' rows='5' onChange={onChangeContentHandler} value={inputContent}></TextArea>
           </InputDiv>
           <ButtonDiv>
             <Button type='button' cancel>
@@ -62,8 +50,14 @@ const FlexDiv = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+const Input = styled.input`
+  border-radius: 3px;
+`;
+const TextArea = styled.textarea`
+  border-radius: 5px;
+`;
 const InputDiv = styled.div`
-  display: flex;
+  // display: flex;
   align-items: center;
 `;
 const LabelDiv = styled.div`

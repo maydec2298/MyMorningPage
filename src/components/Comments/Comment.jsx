@@ -20,7 +20,6 @@ const Comment = () => {
   );
 };
 const Span = styled.div`
-  border: 1px solid blue;
   display: inline-block;
   font-weight: bold;
 `;
