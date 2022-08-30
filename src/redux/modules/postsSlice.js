@@ -13,15 +13,8 @@ import axios from "axios";
     userId: "",
     title: "",
     content: "", 
-    editToggle: false
   }
 */
-
-const initialState = {
-  posts: [],
-  isLoading: false,
-  error: null,
-};
 
 export const __getPosts = createAsyncThunk(
   "posts/getPosts",
@@ -35,8 +28,8 @@ export const __getPosts = createAsyncThunk(
   }
 );
 
-export const __addPosts = createAsyncThunk(
-  "posts/addPosts",
+export const __addPost = createAsyncThunk(
+  "posts/addPost",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.post("http://localhost:3001/posts", payload);
@@ -47,27 +40,29 @@ export const __addPosts = createAsyncThunk(
   }
 );
 
+export const __deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.delete(`http://localhost:3001/posts/${postId}`)
+    }
+  }
+)
+
+const initialState = {
+  posts: [],
+  isLoading: false,
+  error: null,
+  isSuccess: false,
+};
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    addPost: (state, action) => {
-      state.posts = [...state.posts, action.payload]; // payload: 새로운 게시글 객체
-    },
-
-    deletePost: (state, action) => {
-      state.posts = state.posts.filter(
-        (post) => post.postId !== action.payload
-      ); //payload: 삭제될 게시글의 postId
-    },
-
-    editToggleComment: (state, action) => {
-      state.posts = state.posts.map((post) =>
-        post.postId === action.payload
-          ? { ...post, editToggle: !post.editToggle }
-          : post
-      );
-    },
+    clearTodo: (state, action) => {
+      state.isSuccess = false
+    }
   },
   extraReducers: {
     // getPosts : posts 전체 목록을 가지고 옴
@@ -83,20 +78,32 @@ const postsSlice = createSlice({
       state.error = action.payload;
     },
 
-    // addPosts : post를 db에 추가
-    [__addPosts.pending]: (state) => {
+    // addPost : post를 db에 추가
+    [__addPost.pending]: (state) => {
       state.isLoading = true;
     },
-    [__addPosts.fulfilled]: (state, action) => {
+    [__addPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.posts = [...state.posts, action.payload];
     },
-    [__addPosts.rejected]: (state, action) => {
+    [__addPost.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    // deletePost : postId가 일치하는 객체를 삭제
+    [__deletePost.pending]: (state) => {
+      state.isLoading = true
+    },
+    [__deletePost.fulfilled]: (state, action) => {
+      state.posts = state.posts.filter((post) => post.postId !== action.payload)
+    },
+    [__deletePost.rejected]: (state, action) => {
+      state.isLoading = false
+      state.error = action.payload
+    }
   },
 });
 
-export const { getPost, addPost, deletePost, editToggle } = postsSlice.actions;
+export const {} = postsSlice.actions;
 export default postsSlice.reducer;
