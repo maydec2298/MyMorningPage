@@ -4,8 +4,6 @@ import Comment from './Comment';
 const CommentList = () => {
   return (
     <div>
-      <h1>댓글</h1>
-      {/* <h1>댓글</h1> */}
       <CommentForm></CommentForm>
       <Comment></Comment>
     </div>

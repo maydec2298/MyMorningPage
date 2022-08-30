@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../UI/Button';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 // import CommentList from './CommentList';
 
 const Comment = () => {
@@ -8,12 +9,14 @@ const Comment = () => {
     <CommentStyle>
       <NameDiv>
         <Span>닉네임</Span>
-        <MarginSpan>닉네임 들어갈 부분입니다.</MarginSpan>
+        <MarginSpan>닉네임들어갈부분</MarginSpan>
       </NameDiv>
       <CommentDiv>
         <Span>댓글</Span>
-        <MarginSpan>댓글 들어갈 부분입니다.</MarginSpan>
+        <MarginSpan>댓글 들어갈 부분</MarginSpan>
       </CommentDiv>
+      {/* <AiFillEdit></AiFillEdit>
+      <AiFillDelete></AiFillDelete> */}
       <Button edit>수정하기</Button>
       <Button delete>삭제하기</Button>
     </CommentStyle>
@@ -25,7 +28,7 @@ const Span = styled.div`
 `;
 
 const NameDiv = styled.div`
-  width: 200px;
+  width: 150px;
   flex-grow: 1;
 `;
 

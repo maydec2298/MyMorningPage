@@ -1,15 +1,27 @@
-import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 import Button from '../UI/Button';
+import { addComment } from '../../redux/modules/commentsSlice';
 const CommentForm = () => {
-  const [inputName, onChangeNameIdHandler] = useInput();
-  const [inputContent, onChangeContentHandler] = useInput();
+  const dispatch = useDispatch();
+
+  const [userId, onChangeNameIdHandler] = useInput();
+  const [content, onChangeContentHandler] = useInput();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (inputName === '' || inputContent === '') return alert('빠짐 없이 입력해 주세요!');
+    if (userId === '' || content === '') return alert('닉네임과 댓글을 입력해 주세요!');
+
+    dispatch(
+      addComment({
+        postId: nanoid(),
+        userId,
+        content,
+        editToggle: false,
+      })
+    );
   };
 
   return (
@@ -18,11 +30,11 @@ const CommentForm = () => {
         <FlexDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <Input type='text' id='name' onChange={onChangeNameIdHandler} value={inputName} />
+            <Input type='text' id='name' onChange={onChangeNameIdHandler} value={userId} minlength='3' maxlength='15' required />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <TextArea name='' id='content' cols='40' rows='5' onChange={onChangeContentHandler} value={inputContent}></TextArea>
+            <TextArea name='' id='content' cols='40' rows='5' onChange={onChangeContentHandler} value={content} required pattern='[a-zA-Z0-9]+'></TextArea>
           </InputDiv>
           <ButtonDiv>
             <Button type='button' cancel>
@@ -51,18 +63,21 @@ const FlexDiv = styled.div`
   align-items: center;
 `;
 const Input = styled.input`
-  border-radius: 3px;
+  outline: none;
 `;
 const TextArea = styled.textarea`
+  outline: none;
   border-radius: 5px;
+  resize: none;
 `;
 const InputDiv = styled.div`
   // display: flex;
   align-items: center;
 `;
 const LabelDiv = styled.div`
-  text-align: center;
+  // text-align: center;
   margin: 0 5px;
+  font-weight: bold;
 `;
 const ButtonDiv = styled.div``;
 export default CommentForm;
