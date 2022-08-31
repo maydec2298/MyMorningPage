@@ -1,27 +1,38 @@
-import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
+import React,{useEffect} from "react";
+import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from "react-router-dom";
 import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 import Button from '../UI/Button';
-import { addComment } from '../../redux/modules/commentsSlice';
+import { clearComment,__addComment } from "../../redux/modules/commentsSlice"
+
 const CommentForm = () => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const isSuccess = useSelector((state) => state.comments.isSuccess);
 
   const [userId, onChangeNameIdHandler] = useInput();
   const [content, onChangeContentHandler] = useInput();
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    if (userId === '' || content === '') return alert('닉네임과 댓글을 입력해 주세요!');
+
+  useEffect(() => {
+    if (!isSuccess) return;
+    // if (isSuccess) navigate("/");
+
+    return () => dispatch(clearComment());
+  }, [dispatch, isSuccess]);
+
+  const onSubmitHandler = () => {
+    // e.preventDefault();
 
     dispatch(
-      addComment({
-        postId: nanoid(),
+      __addComment({
         userId,
         content,
         editToggle: false,
       })
     );
+
   };
 
   return (
@@ -30,18 +41,15 @@ const CommentForm = () => {
         <FlexDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <Input type='text' id='name' onChange={onChangeNameIdHandler} value={userId} minlength='3' maxlength='15' required />
+            <Input type='text' onChange={onChangeNameIdHandler} value={userId} maxlength={'5'} required />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <TextArea name='' id='content' cols='40' rows='5' onChange={onChangeContentHandler} value={content} required pattern='[a-zA-Z0-9]+'></TextArea>
+            <TextArea name='content' cols='40' rows='5' onChange={onChangeContentHandler} value={content} required  maxlength={'100'}></TextArea>
           </InputDiv>
           <ButtonDiv>
-            <Button type='button' cancel>
-              취소하기
-            </Button>
-            <Button type='submit' add>
-              작성하기
+            <Button type='submit' add >
+              작성
             </Button>
           </ButtonDiv>
         </FlexDiv>
