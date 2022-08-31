@@ -1,6 +1,6 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Button from "../UI/Button";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Button from '../UI/Button';
 
 const Comment = ({ comment }) => {
   const [editMode, setEditMode] = useState(false);
@@ -10,25 +10,19 @@ const Comment = ({ comment }) => {
       <NameDiv>
         <MarginSpan>{comment.userId}</MarginSpan>
       </NameDiv>
-      <CommentDiv>
-        {!editMode ? (
-          <MarginSpan>{comment.content}</MarginSpan>
-        ) : (
-          <>/*이 안에 comment 수정을 눌렀을때 뜰 input 태그 만들어 주세요. */</>
-        )}
-      </CommentDiv>
+      <CommentDiv>{!editMode ? <MarginSpan>{comment.content}</MarginSpan> : <Textarea>{comment.content}</Textarea>}</CommentDiv>
       <Button edit onClick={() => setEditMode(!editMode)}>
-        {editMode ? "취소" : "수정"}
+        {editMode ? '취소' : '수정'}
       </Button>
-      <Button delete>삭제</Button>
+      <Button delete>{editMode ? '완료' : '삭제'}</Button>
     </CommentStyle>
   );
 };
 
-const Span = styled.div`
-  display: inline-block;
-  font-weight: bold;
-`;
+// const Span = styled.div`
+//   display: inline-block;
+//   font-weight: bold;
+// `;
 
 const NameDiv = styled.div`
   width: 150px;
@@ -50,5 +44,11 @@ const CommentStyle = styled.div`
   justify-content: center;
   padding: 10px;
   margin: 10px;
+`;
+
+const Textarea = styled.textarea`
+  width: 90%;
+  height: 20px;
+  resize: none;
 `;
 export default Comment;
