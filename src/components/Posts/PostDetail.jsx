@@ -6,7 +6,7 @@ const PostDetail = () => {
   return (
     <div>
       <div>
-        <TitleDiv>타이틀 테스트</TitleDiv>
+        <TitleDiv>글 제목이 들어갈 공간입니다.</TitleDiv>
         <ContentDiv>글 내용 들어갈 공간입니다.</ContentDiv>
       </div>
       <ButtonDiv>

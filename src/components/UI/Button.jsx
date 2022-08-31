@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
 const Button = ({ children, ...props }) => {
   return <StyledButton {...props}>{children}</StyledButton>;
 };
@@ -12,6 +11,7 @@ const StyledButton = styled.button`
   line-height: 1.5;
   margin: 10px;
   border: 1px solid lightgray;
+  cursor: pointer;
 
   //작성하기,추가하기
   ${(props) =>

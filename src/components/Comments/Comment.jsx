@@ -1,24 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../UI/Button';
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
-// import CommentList from './CommentList';
 
 const Comment = () => {
   return (
     <CommentStyle>
       <NameDiv>
         <Span>닉네임</Span>
-        <MarginSpan>닉네임들어갈부분</MarginSpan>
+        <MarginSpan>닉네임 들어갈부분</MarginSpan>
       </NameDiv>
       <CommentDiv>
         <Span>댓글</Span>
         <MarginSpan>댓글 들어갈 부분</MarginSpan>
       </CommentDiv>
-      {/* <AiFillEdit></AiFillEdit>
-      <AiFillDelete></AiFillDelete> */}
-      <Button edit>수정하기</Button>
-      <Button delete>삭제하기</Button>
+      <Button edit>수정</Button>
+      <Button delete>삭제</Button>
     </CommentStyle>
   );
 };
