@@ -15,7 +15,6 @@ const Detail = () => {
   const { id } = useParams();
 
   const [editMode, setEditMode] = useState(false);
-  const post = useSelector((state) => state.post.post);
 
   useEffect(() => {
     dispatch(__getPostById(id));
@@ -28,7 +27,7 @@ const Detail = () => {
         <PostDetail
           editMode={editMode}
           setEditMode={setEditMode}
-          post={post}
+          postId={id}
         ></PostDetail>
         {editMode ? <></> : <CommentList postId={id}></CommentList>}
       </Container>

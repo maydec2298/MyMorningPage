@@ -1,7 +1,52 @@
-import styled from 'styled-components';
-import Button from '../UI/Button';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Button from "../UI/Button";
+import { __deletePost } from "../../redux/modules/postsSlice";
+import {
+  clearPost,
+  __getPostById,
+  __updatePost,
+} from "../../redux/modules/postSlice";
+import { useEffect, useState } from "react";
 
-const PostDetail = ({ editMode, setEditMode, post }) => {
+const PostDetail = ({ editMode, setEditMode, postId }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [updateContent, setUpdateContent] = useState("");
+  const post = useSelector((state) => state.post.post);
+
+  useEffect(() => {
+    dispatch(__getPostById(postId));
+    return () => dispatch(clearPost());
+  }, [dispatch, postId]);
+
+  useEffect(() => {
+    setUpdateContent(post.content);
+  }, [post]);
+
+  const onDeleteHandler = (event) => {
+    event.stopPropagation();
+    const result = window.confirm("이 게시글을 지울까요?");
+    if (result) {
+      dispatch(__deletePost(post.id));
+      return navigate("/");
+    } else {
+      return;
+    }
+  };
+
+  const onSaveHandler = () => {
+    dispatch(
+      __updatePost({
+        ...post,
+        content: updateContent,
+      })
+    );
+    setEditMode(false);
+  };
+
   return (
     <div>
       <TitleDiv>{post.title}</TitleDiv>
@@ -9,14 +54,35 @@ const PostDetail = ({ editMode, setEditMode, post }) => {
         <ContentDiv>{post.content}</ContentDiv>
       ) : (
         <ContentDiv>
-          <TextArea type='text'>{post.content}</TextArea>
+          <TextArea
+            type="text"
+            value={updateContent}
+            onChange={(event) => {
+              setUpdateContent(event.target.value);
+            }}
+          />
         </ContentDiv>
       )}
       <ButtonDiv>
-        <Button edit onClick={() => setEditMode(!editMode)}>
-          {editMode ? '취소' : '수정'}
-        </Button>
-        <Button delete>{editMode ? '완료' : '삭제'}</Button>
+        {!editMode ? (
+          <>
+            <Button edit onClick={() => setEditMode(!editMode)}>
+              수정
+            </Button>
+            <Button delete onClick={onDeleteHandler}>
+              삭제
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button edit onClick={() => setEditMode(!editMode)}>
+              취소
+            </Button>
+            <Button delete onClick={onSaveHandler}>
+              완료
+            </Button>
+          </>
+        )}
       </ButtonDiv>
     </div>
   );

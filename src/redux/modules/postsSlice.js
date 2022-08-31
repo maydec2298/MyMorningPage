@@ -17,7 +17,7 @@ import axios from "axios";
 // thunk 함수 정의
 export const __getPosts = createAsyncThunk(
   "posts/getPosts",
-  async (payload, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const { data } = await axios.get("http://localhost:3001/posts");
       return thunkAPI.fulfillWithValue(data);
