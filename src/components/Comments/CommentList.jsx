@@ -13,7 +13,7 @@ const CommentList = ({ postId }) => {
 
   useEffect(() => {
     dispatch(__getComments(postId));
-  }, [dispatch]);
+  }, [dispatch, postId]);
 
   if (error) return <div>알 수 없는 에러가 발생했습니다.</div>;
 
