@@ -32,8 +32,8 @@ const PostForm = () => {
       })
     );
    
-    //작성한 post의 상세 페이지로 이동
-    navigate(`/detail/${nanoidId}`) 
+
+    navigate(`/`) 
   };
 
   return (
@@ -172,6 +172,6 @@ const ContentInput = styled.textarea`
 
 const FormButtonbox = styled.div`
   float:right;
-  margin : 0px 23px;
+  margin : 0px 28px;
 `
 export default PostForm;
