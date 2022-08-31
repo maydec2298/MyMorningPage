@@ -1,23 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '../UI/Button';
+import { useState } from "react";
+import styled from "styled-components";
+import Button from "../UI/Button";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const [editMode, setEditMode] = useState(false);
+
   return (
     <CommentStyle>
       <NameDiv>
-        <Span>닉네임</Span>
-        <MarginSpan>닉네임 들어갈부분</MarginSpan>
+        <MarginSpan>{comment.userId}</MarginSpan>
       </NameDiv>
       <CommentDiv>
-        <Span>댓글</Span>
-        <MarginSpan>댓글 들어갈 부분</MarginSpan>
+        {!editMode ? (
+          <MarginSpan>{comment.content}</MarginSpan>
+        ) : (
+          <>/*이 안에 comment 수정을 눌렀을때 뜰 input 태그 만들어 주세요. */</>
+        )}
       </CommentDiv>
-      <Button edit>수정</Button>
+      <Button edit onClick={() => setEditMode(!editMode)}>
+        {editMode ? "취소" : "수정"}
+      </Button>
       <Button delete>삭제</Button>
     </CommentStyle>
   );
 };
+
 const Span = styled.div`
   display: inline-block;
   font-weight: bold;

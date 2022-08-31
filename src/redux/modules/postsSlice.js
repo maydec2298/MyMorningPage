@@ -64,7 +64,7 @@ const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    clearTodo: (state, action) => {
+    clearPost: (state, action) => {
       state.isSuccess = false;
     },
   },
@@ -105,5 +105,5 @@ const postsSlice = createSlice({
   },
 });
 
-export const { clearTodo } = postsSlice.actions;
+export const { clearPost } = postsSlice.actions;
 export default postsSlice.reducer;

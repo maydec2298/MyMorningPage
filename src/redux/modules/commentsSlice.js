@@ -64,24 +64,13 @@ const initialState = {
 const commentsSlice = createSlice({
   name: "comments",
   initialState,
-  reducers: {
-    addComment: (state, action) => {
-      state.comments = [...state.comments, action.payload]; //payload:새로운 댓글 객체
+  reducers: {},
+  extraReducers: {
+    [__getComments.fulfilled]: (state, action) => {
+      state.comments = action.payload;
     },
-
-    deleteComment: (state, action) => {
-      state.comments = state.comments.filter(
-        (comment) => comment.id !== action.payload // payload: commentId
-      );
-    },
-
-    editToggleComment: (state, action) => {
-      // payload: 댓글 id
-      state.comments = state.comments.map((comment) =>
-        comment.id === action.payload
-          ? { ...comment, editToggle: !comment.editToggle }
-          : comment
-      );
+    [__getComments.rejected]: (state, action) => {
+      state.error = action.payload;
     },
   },
 });

@@ -1,12 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-const Post = () => {
+const Post = ({ post }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <ContainerDiv>
-        <SpanTitle>내용 넣는 부분입니다.</SpanTitle>
-        <SpanName>작성자 닉네임 넣는 부분입니다.</SpanName>
+      <ContainerDiv
+        onClick={() => {
+          navigate(`/detail/${post.id}`);
+        }}
+      >
+        <SpanTitle>{post.title}</SpanTitle>
+        <SpanName>{post.userId}</SpanName>
       </ContainerDiv>
     </div>
   );
@@ -16,7 +22,7 @@ const ContainerDiv = styled.div`
   display: flex;
   margin: 20px 0;
   padding: 20px 0;
-  justify-contents: center;
+  justify-content: center;
   border: 1px solid lightblue;
   cursor: pointer;
 `;

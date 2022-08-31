@@ -3,11 +3,11 @@ import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
-//UI 관련
+// Components
 import styled from "styled-components";
 import Button from "../UI/Button";
-// 리덕스 관련
-import { clearTodo, __addPost } from "../../redux/modules/postsSlice";
+// Store
+import { clearPost, __addPost } from "../../redux/modules/postsSlice";
 
 const PostForm = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const PostForm = () => {
     if (!isSuccess) return;
     if (isSuccess) navigate("/");
 
-    return () => dispatch(clearTodo());
+    return () => dispatch(clearPost());
   }, [dispatch, isSuccess, navigate]);
 
   // onSubmit
