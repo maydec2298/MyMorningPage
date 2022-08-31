@@ -1,16 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '../UI/Button';
+import styled from "styled-components";
+import Button from "../UI/Button";
 
-const PostDetail = () => {
+const PostDetail = ({ editMode, setEditMode, post }) => {
   return (
     <div>
-      <div>
-        <TitleDiv>글 제목이 들어갈 공간입니다.</TitleDiv>
-        <ContentDiv>글 내용 들어갈 공간입니다.</ContentDiv>
-      </div>
+      <TitleDiv>{post.title}</TitleDiv>
+      {!editMode ? (
+        <ContentDiv>{post.content}</ContentDiv>
+      ) : (
+        <>/*여기에 수정을 눌렀을 때 보여질 input 태그 만들어주세요*/</>
+      )}
       <ButtonDiv>
-        <Button edit>수정</Button>
+        <Button edit onClick={() => setEditMode(!editMode)}>
+          {editMode ? "취소" : "수정"}
+        </Button>
         <Button delete>삭제</Button>
       </ButtonDiv>
     </div>

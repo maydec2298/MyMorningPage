@@ -32,7 +32,8 @@ export const __addComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/comments", payload
+        "http://localhost:3001/comments",
+        payload
       );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -65,33 +66,17 @@ const initialState = {
 const commentsSlice = createSlice({
   name: "comments",
   initialState,
-  reducers: {
-    clearComment: (state, action) => {
-      state.isSuccess = false;
+  reducers: {},
+  extraReducers: {
+    [__getComments.fulfilled]: (state, action) => {
+      state.comments = action.payload;
     },
-
-    addComment: (state, action) => {
-      state.comments = [...state.comments, action.payload]; //payload:새로운 댓글 객체
-    },
-
-    deleteComment: (state, action) => {
-      state.comments = state.comments.filter(
-        (comment) => comment.id !== action.payload // payload: commentId
-      );
-    },
-
-    editToggleComment: (state, action) => {
-      // payload: 댓글 id
-      state.comments = state.comments.map((comment) =>
-        comment.id === action.payload
-          ? { ...comment, editToggle: !comment.editToggle }
-          : comment
-      );
+    [__getComments.rejected]: (state, action) => {
+      state.error = action.payload;
     },
   },
 
-    extraReducers: {
-    
+  extraReducers: {
     // addComment : comment를 db에 추가
     [__addComment.pending]: (state) => {
       state.isSuccess = false;
@@ -106,7 +91,6 @@ const commentsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-
   },
 });
 
