@@ -97,6 +97,12 @@
       "userId": "sdf",
       "content": "sdfsdfsdf",
       "id": 3
+    },
+    {
+      "postId": 2,
+      "userId": "ㄴㅇㄹ",
+      "content": "ㄴㅇㄹㄴㅇㄹ",
+      "id": 4
     }
   ]
 }
