@@ -91,6 +91,12 @@
       "id": 2,
       "userId": "userId",
       "content": "commentContent"
+    },
+    {
+      "postId": 1,
+      "userId": "sdf",
+      "content": "sdfsdfsdf",
+      "id": 3
     }
   ]
 }

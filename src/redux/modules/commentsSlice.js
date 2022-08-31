@@ -59,14 +59,16 @@ export const __deleteComment = createAsyncThunk(
 const initialState = {
   comments: [],
   error: null,
-  isLoading: false,
-  isSuccess: false,
 };
 
 const commentsSlice = createSlice({
   name: "comments",
   initialState,
-  reducers: {},
+  reducers: {
+    clearComment: (state) => {
+      state.isSuccess = false;
+    },
+  },
   extraReducers: {
     [__getComments.fulfilled]: (state, action) => {
       state.comments = action.payload;
@@ -74,26 +76,16 @@ const commentsSlice = createSlice({
     [__getComments.rejected]: (state, action) => {
       state.error = action.payload;
     },
-  },
 
-  extraReducers: {
     // addComment : comment를 db에 추가
-    [__addComment.pending]: (state) => {
-      state.isSuccess = false;
-      state.isLoading = true;
-    },
+    [__addComment.pending]: (state) => {},
     [__addComment.fulfilled]: (state, action) => {
-      state.isSuccess = true;
-      state.isLoading = false;
       state.comments.push(action.payload);
     },
     [__addComment.rejected]: (state, action) => {
-      state.isLoading = false;
       state.error = action.payload;
     },
   },
 });
 
-export const { clearComment, addComment, deleteComment, editToggleComment } =
-  commentsSlice.actions;
 export default commentsSlice.reducer;

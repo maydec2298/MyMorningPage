@@ -19,7 +19,7 @@ const CommentList = ({ postId }) => {
 
   return (
     <div>
-      <CommentForm></CommentForm>
+      <CommentForm postId={postId}></CommentForm>
       {comments.length === 0 ? (
         <h2>
           아직 댓글이 없어요😭

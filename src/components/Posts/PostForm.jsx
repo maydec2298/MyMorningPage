@@ -30,9 +30,9 @@ const PostForm = () => {
 
     dispatch(
       __addPost({
-        userId: userId,
-        title: title,
-        content: content,
+        userId,
+        title,
+        content,
       })
     );
 

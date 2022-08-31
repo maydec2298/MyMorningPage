@@ -1,38 +1,24 @@
-import React,{useEffect} from "react";
-import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from "react-router-dom";
-import useInput from '../../hooks/useInput';
-import styled from 'styled-components';
-import Button from '../UI/Button';
-import { clearComment,__addComment } from "../../redux/modules/commentsSlice"
+import { useDispatch } from "react-redux";
+import useInput from "../../hooks/useInput";
+import styled from "styled-components";
+import Button from "../UI/Button";
+import { __addComment } from "../../redux/modules/commentsSlice";
 
-const CommentForm = () => {
+const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const isSuccess = useSelector((state) => state.comments.isSuccess);
-
   const [userId, onChangeNameIdHandler] = useInput();
   const [content, onChangeContentHandler] = useInput();
 
-
-  useEffect(() => {
-    if (!isSuccess) return;
-    // if (isSuccess) navigate("/");
-
-    return () => dispatch(clearComment());
-  }, [dispatch, isSuccess]);
-
-  const onSubmitHandler = () => {
-    // e.preventDefault();
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
 
     dispatch(
       __addComment({
+        postId: +postId,
         userId,
         content,
-        editToggle: false,
       })
     );
-
   };
 
   return (
@@ -41,14 +27,28 @@ const CommentForm = () => {
         <GridDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <Input type='text' onChange={onChangeNameIdHandler} value={userId} maxlength={'5'} required />
+            <Input
+              type="text"
+              onChange={onChangeNameIdHandler}
+              value={userId}
+              maxlength={"5"}
+              required
+            />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <TextArea name='content' cols='40' rows='5' onChange={onChangeContentHandler} value={content} required  maxlength={'100'}></TextArea>
+            <TextArea
+              name="content"
+              cols="40"
+              rows="5"
+              onChange={onChangeContentHandler}
+              value={content}
+              required
+              maxlength={"100"}
+            ></TextArea>
           </InputDiv>
           <ButtonDiv>
-            <Button type='submit' add >
+            <Button type="submit" add>
               작성
             </Button>
           </ButtonDiv>
