@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import Logo from "./Logo";
-import TitleHeader from "./TitleHeader";
+import React from 'react';
+import styled from 'styled-components';
+import Logo from './Logo';
+import TitleHeader from './TitleHeader';
 
 const Layout = (props) => {
   return (
@@ -14,8 +14,8 @@ const Layout = (props) => {
 };
 
 const LayoutBox = styled.div`
-  max-width: 1200px;
-  min-width: 400px;
+  max-width: 1000px;
+  min-width: 800px;
   overflow: hidden;
   margin: auto;
 `;

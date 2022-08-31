@@ -1,22 +1,22 @@
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 // import Components
-import Layout from "../components/UI/Layout";
-import Container from "../components/UI/Container";
-import Button from "../components/UI/Button";
-import PostList from "../components/Posts/PostList";
+import Layout from '../components/UI/Layout';
+import Container from '../components/UI/Container';
+import Button from '../components/UI/Button';
+import PostList from '../components/Posts/PostList';
 
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <Layout title="My Morning Page">
+    <Layout title='My Morning Page'>
       <Container>
         <TitleBox>
           <TitleH2>글 목록</TitleH2>
           <Button
             add
             onClick={() => {
-              navigate("/write");
+              navigate('/write');
             }}
           >
             글쓰기
@@ -31,6 +31,8 @@ const Home = () => {
 export default Home;
 
 const TitleBox = styled.div`
+  width: 60%;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

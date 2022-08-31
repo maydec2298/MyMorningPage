@@ -6,7 +6,7 @@ const Button = ({ children, ...props }) => {
 };
 
 const StyledButton = styled.button`
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 8px;
   font-size: 1rem;
   line-height: 1.5;
@@ -18,9 +18,13 @@ const StyledButton = styled.button`
   ${(props) =>
     props.add &&
     css`
-      color: gray;
-      background-color: white;
+      background-color: #395b64;
+      color: #fff;
       border-color: lightgray;
+      &:hover {
+        background-color: #fff;
+        color: #2c3333;
+      }
     `}
 
   //취소하기
@@ -28,7 +32,7 @@ const StyledButton = styled.button`
     props.cancel &&
     css`
       color: black;
-      background-color: #999;
+      background-color: #fff;
       border-color: lightgray;
     `}
 
@@ -39,6 +43,10 @@ const StyledButton = styled.button`
       color: #9c2121;
       background-color: #fff;
       border-color: lightgray;
+      &:hover {
+        background-color: #fff;
+        color: red;
+      }
     `}
 
 //수정하기
@@ -46,8 +54,8 @@ const StyledButton = styled.button`
     props.edit &&
     css`
       color: gray;
-      background-color: #b2f4fe;
-      border-color: #302e69;
+      background-color: #fff;
+      border-color: lightgray;
     `}
 `;
 export default memo(Button);

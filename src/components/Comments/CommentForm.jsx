@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
-import useInput from "../../hooks/useInput";
-import styled from "styled-components";
-import Button from "../UI/Button";
-import { __addComment } from "../../redux/modules/commentsSlice";
+import { useDispatch } from 'react-redux';
+import useInput from '../../hooks/useInput';
+import styled from 'styled-components';
+import Button from '../UI/Button';
+import { __addComment } from '../../redux/modules/commentsSlice';
 
 const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
@@ -27,31 +27,17 @@ const CommentForm = ({ postId }) => {
         <GridDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <Input
-              type="text"
-              onChange={onChangeNameIdHandler}
-              value={userId}
-              maxlength={"5"}
-              required
-            />
+            <Input type='text' onChange={onChangeNameIdHandler} value={userId} maxLength={'5'} required />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <TextArea
-              name="content"
-              cols="40"
-              rows="5"
-              onChange={onChangeContentHandler}
-              value={content}
-              required
-              maxlength={"100"}
-            ></TextArea>
+            <TextArea name='content' onChange={onChangeContentHandler} value={content} required maxLength={'100'}></TextArea>
+            <ButtonDiv>
+              <Button type='submit' add>
+                작성
+              </Button>
+            </ButtonDiv>
           </InputDiv>
-          <ButtonDiv>
-            <Button type="submit" add>
-              작성
-            </Button>
-          </ButtonDiv>
         </GridDiv>
       </form>
     </ContainerDiv>
@@ -59,40 +45,42 @@ const CommentForm = ({ postId }) => {
 };
 
 const ContainerDiv = styled.div`
-  max-width: 500px;
-  border: 1px solid lightblue;
-  margin: 20px auto;
-  padding: 20px 20px 10px 20px;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 50px;
 `;
 const GridDiv = styled.div`
-  display: grid;
-  // grid-template-rows: 5px 100px;
-  row-gap: 10px;
-  justify-content: left;
+  justify-content: center;
+  align-items: center;
 `;
 const Input = styled.input`
   outline: none;
-  padding: 2px 5px;
+  padding: 5px;
+  border: 1px solid #999;
+  border-radius: 5px;
 `;
 const TextArea = styled.textarea`
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 400px;
-  height: 80px;
+  height: 50px;
   resize: none;
-  padding: 2px 5px;
+  padding: 2px 10px;
+  border: 1px solid #999;
 `;
 const InputDiv = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 `;
 const LabelDiv = styled.div`
-  text-align: right;
+  text-align: left;
   margin: 0 5px;
   font-weight: bold;
   width: 50px;
 `;
 const ButtonDiv = styled.div`
   text-align: right;
+  margin-left: 35px;
 `;
 export default CommentForm;

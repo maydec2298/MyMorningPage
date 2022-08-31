@@ -11,44 +11,48 @@ const Comment = ({ comment }) => {
         <MarginSpan>{comment.userId}</MarginSpan>
       </NameDiv>
       <CommentDiv>{!editMode ? <MarginSpan>{comment.content}</MarginSpan> : <Textarea>{comment.content}</Textarea>}</CommentDiv>
-      <Button edit onClick={() => setEditMode(!editMode)}>
-        {editMode ? '취소' : '수정'}
-      </Button>
-      <Button delete>{editMode ? '완료' : '삭제'}</Button>
+      <ButtonBox>
+        <Button edit onClick={() => setEditMode(!editMode)}>
+          {editMode ? '취소' : '수정'}
+        </Button>
+        <Button delete>{editMode ? '완료' : '삭제'}</Button>
+      </ButtonBox>
     </CommentStyle>
   );
 };
 
-// const Span = styled.div`
-//   display: inline-block;
-//   font-weight: bold;
-// `;
-
+const CommentStyle = styled.div`
+  width: 60%;
+  border-bottom: 1px solid lightblue;
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+  overflow: hidden;
+`;
 const NameDiv = styled.div`
-  width: 150px;
-  flex-grow: 1;
+  /* flex-grow: 2; */
+  /* border: 1px dashed red; */
+  margin-right: 30px;
+  width: 15%;
+  text-align: right;
 `;
 
 const CommentDiv = styled.div`
-  width: 500px;
-  flex-grow: 7;
+  text-align: left;
+  width: 60%;
+`;
+
+const ButtonBox = styled.div`
+  /* text-align: right; */
+  width: 25%;
+  /* border: 1px solid red; */
 `;
 const MarginSpan = styled.span`
   margin-left: 10px;
 `;
-const CommentStyle = styled.div`
-  height: 50px;
-  border: 1px solid lightblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  margin: 10px;
-`;
 
 const Textarea = styled.textarea`
   width: 90%;
-  height: 20px;
   resize: none;
 `;
 export default Comment;

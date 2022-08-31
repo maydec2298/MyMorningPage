@@ -23,8 +23,8 @@ const CommentList = ({ postId }) => {
       <CommentForm postId={postId}></CommentForm>
       {comments.length === 0 ? (
         <H2>
-          아직 댓글이 없어요 😭
-          <br />첫 댓글을 달아볼까요?
+          아직 댓글이 없어요
+          <br />첫 댓글을 달아볼까요? ≡≡≡=(ﾉTдT)ﾉ
         </H2>
       ) : (
         comments.map((comment) => <Comment key={comment.id} comment={comment} />)
@@ -33,7 +33,7 @@ const CommentList = ({ postId }) => {
   );
 };
 
-const H2 = styled.h2`
+const H2 = styled.h4`
   text-align: center;
 `;
 export default CommentList;

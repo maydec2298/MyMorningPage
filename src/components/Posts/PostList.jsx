@@ -17,7 +17,8 @@ const PostList = () => {
     return (
       <div>
         <H2>
-          아직 게시글이 없어요😭 <br /> 첫번째 글의 주인공이 되어 보시는건 어떨까요?{' '}
+          아직 게시글이 없어요 ｡:ﾟ(;´∩`;)ﾟ:｡
+          <br /> 첫번째 글의 주인공이 되어 보시는건 어떨까요?{' '}
         </H2>
       </div>
     );
@@ -33,7 +34,8 @@ const PostList = () => {
   );
 };
 
-const H2 = styled.h2`
+const H2 = styled.h3`
   text-align: center;
+  margin: 100px 0;
 `;
 export default PostList;

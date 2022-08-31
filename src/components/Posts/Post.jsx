@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Post = ({ post }) => {
   const navigate = useNavigate();
@@ -19,15 +19,16 @@ const Post = ({ post }) => {
 };
 
 const ContainerDiv = styled.div`
+  width: 60%;
   display: flex;
-  margin: 20px 0;
+  margin: 20px auto;
   padding: 20px 0;
   justify-content: center;
-  border: 1px solid lightblue;
+  border-bottom: 1px solid lightblue;
   cursor: pointer;
 `;
 const SpanTitle = styled.div`
-  width: 900px;
+  width: 400px;
   // border: 1px solid red;
   margin: 0 5px;
   padding: 0 10px;
