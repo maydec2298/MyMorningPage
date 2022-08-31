@@ -27,57 +27,64 @@ const CommentForm = () => {
   return (
     <ContainerDiv>
       <form onSubmit={onSubmitHandler}>
-        <FlexDiv>
+        <GridDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <Input type='text' id='name' onChange={onChangeNameIdHandler} value={userId} minlength='3' maxlength='15' required />
+            <Input type='text' id='name' onChange={onChangeNameIdHandler} value={userId} minlength='3' maxlength={'15'} required />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <TextArea name='' id='content' cols='40' rows='5' onChange={onChangeContentHandler} value={content} required pattern='[a-zA-Z0-9]+'></TextArea>
+            <TextArea name='' id='content' onChange={onChangeContentHandler} value={content} required></TextArea>
           </InputDiv>
           <ButtonDiv>
             <Button type='button' cancel>
-              취소하기
+              취소
             </Button>
             <Button type='submit' add>
-              작성하기
+              작성
             </Button>
           </ButtonDiv>
-        </FlexDiv>
+        </GridDiv>
       </form>
     </ContainerDiv>
   );
 };
 
 const ContainerDiv = styled.div`
-  max-width: 800px;
+  max-width: 500px;
   border: 1px solid lightblue;
   margin: 20px auto;
-  padding: 10px;
-  position: relative;
+  padding: 20px 20px 10px 20px;
 `;
-const FlexDiv = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+const GridDiv = styled.div`
+  display: grid;
+  // grid-template-rows: 5px 100px;
+  row-gap: 10px;
+  justify-content: left;
 `;
 const Input = styled.input`
   outline: none;
+  padding: 2px 5px;
 `;
 const TextArea = styled.textarea`
   outline: none;
   border-radius: 5px;
+  width: 400px;
+  height: 80px;
   resize: none;
+  padding: 2px 5px;
 `;
 const InputDiv = styled.div`
-  // display: flex;
+  display: flex;
   align-items: center;
 `;
 const LabelDiv = styled.div`
-  // text-align: center;
+  text-align: right;
   margin: 0 5px;
   font-weight: bold;
+  width: 50px;
 `;
-const ButtonDiv = styled.div``;
+const ButtonDiv = styled.div`
+  text-align: right;
+`;
 export default CommentForm;
