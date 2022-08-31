@@ -1,20 +1,54 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import Button from '../UI/Button';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import {
+  __deleteComment,
+  __getComments,
+} from "../../redux/modules/commentsSlice";
+import Button from "../UI/Button";
 
 const Comment = ({ comment }) => {
+  const dispatch = useDispatch();
+
   const [editMode, setEditMode] = useState(false);
+  // const comment = useSelector((state) => state.comment.comment);
+
+  const onDeleteHandler = (event) => {
+    event.stopPropagation();
+    const answer = window.confirm("이 댓글을 지울까요?");
+    if (answer) {
+      dispatch(__deleteComment(comment.id));
+    } else {
+      return;
+    }
+  };
 
   return (
     <CommentStyle>
       <NameDiv>
         <MarginSpan>{comment.userId}</MarginSpan>
       </NameDiv>
-      <CommentDiv>{!editMode ? <MarginSpan>{comment.content}</MarginSpan> : <Textarea>{comment.content}</Textarea>}</CommentDiv>
-      <Button edit onClick={() => setEditMode(!editMode)}>
-        {editMode ? '취소' : '수정'}
-      </Button>
-      <Button delete>{editMode ? '완료' : '삭제'}</Button>
+      <CommentDiv>
+        {!editMode ? (
+          <>
+            <MarginSpan>{comment.content}</MarginSpan>
+            <Button edit onClick={() => setEditMode(!editMode)}>
+              수정
+            </Button>
+            <Button delete onClick={onDeleteHandler}>
+              삭제
+            </Button>
+          </>
+        ) : (
+          <>
+            <Textarea>{comment.content}</Textarea>
+            <Button edit onClick={() => setEditMode(!editMode)}>
+              취소
+            </Button>
+            <Button delete>완료</Button>
+          </>
+        )}
+      </CommentDiv>
     </CommentStyle>
   );
 };
