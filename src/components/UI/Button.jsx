@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled, { css } from 'styled-components';
+
 const Button = ({ children, ...props }) => {
   return <StyledButton {...props}>{children}</StyledButton>;
 };
@@ -9,7 +10,7 @@ const StyledButton = styled.button`
   border-radius: 8px;
   font-size: 1rem;
   line-height: 1.5;
-  margin: 10px;
+  margin: 10px 0 10px 10px;
   border: 1px solid lightgray;
   cursor: pointer;
 
@@ -49,4 +50,4 @@ const StyledButton = styled.button`
       border-color: #302e69;
     `}
 `;
-export default Button;
+export default memo(Button);
