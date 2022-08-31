@@ -13,9 +13,9 @@ const PostForm = () => {
   const dispatch = useDispatch();
   const isSuccess = useSelector((state) => state.posts.isSuccess);
 
-  const [userId, onChangeUserIdHandler] = useInput();
-  const [title, onChangeTitleHandler] = useInput();
-  const [content, onChangeContentHandler] = useInput();
+  const [userId, setUserId, onChangeUserIdHandler] = useInput();
+  const [title, setTitle, onChangeTitleHandler] = useInput();
+  const [content, setContent, onChangeContentHandler] = useInput();
 
   useEffect(() => {
     if (!isSuccess) return;
@@ -35,7 +35,9 @@ const PostForm = () => {
         content,
       })
     );
-
+    setUserId("");
+    setTitle("");
+    setContent("");
     navigate("/");
   };
 

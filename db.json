@@ -49,9 +49,9 @@
       "id": 8
     },
     {
-      "userId": "ㄴㅇㄹ",
-      "title": "ㄴㅇㄹㄴㅇㄹ",
-      "content": "dmdkdkdkdkdk",
+      "userId": "sdf",
+      "title": "sdfsdfsdf",
+      "content": "sdfsdf",
       "id": 9
     }
   ],
@@ -85,6 +85,30 @@
       "userId": "ㄴㅇㄹ",
       "content": "ㄴㅇㄹㄴㅇㄹ",
       "id": 4
+    },
+    {
+      "postId": 1,
+      "userId": "안ㄴ여하세여",
+      "content": "받내어래ㅑ넝래ㅑㅓ내야런ㅇㄹ",
+      "id": 5
+    },
+    {
+      "postId": 1,
+      "userId": "안ㄴ여하세여",
+      "content": "받내어래ㅑ넝래ㅑㅓ내야런ㅇㄹ",
+      "id": 6
+    },
+    {
+      "postId": 2,
+      "userId": "asdf",
+      "content": "sdfsdfsdf",
+      "id": 7
+    },
+    {
+      "postId": 2,
+      "userId": "sdfsdfsdf",
+      "content": "sdfsdfsdf",
+      "id": 8
     }
   ]
 }

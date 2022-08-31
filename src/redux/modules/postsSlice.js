@@ -97,9 +97,7 @@ const postsSlice = createSlice({
     // deletePost : postId가 일치하는 객체를 삭제
     [__deletePost.pending]: () => {},
     [__deletePost.fulfilled]: (state, action) => {
-      state.posts = state.posts.filter(
-        (post) => post.postId !== action.payload
-      );
+      state.posts = state.posts.filter((post) => post.id !== action.payload);
     },
     [__deletePost.rejected]: () => {},
   },
