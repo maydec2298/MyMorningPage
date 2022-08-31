@@ -1,10 +1,12 @@
 // Hooks
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { __getPosts } from '../../redux/modules/postsSlice';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // Components
-import Post from './Post';
-import styled from 'styled-components';
+import Post from "./Post";
+import styled from "styled-components";
+// Store
+import { __getPosts } from "../../redux/modules/postsSlice";
+
 const PostList = () => {
   const dispatch = useDispatch();
   const { posts, error } = useSelector((state) => state.posts);
@@ -18,7 +20,7 @@ const PostList = () => {
       <div>
         <H2>
           아직 게시글이 없어요 ｡:ﾟ(;´∩`;)ﾟ:｡
-          <br /> 첫번째 글의 주인공이 되어 보시는건 어떨까요?{' '}
+          <br /> 첫번째 글의 주인공이 되어 보시는건 어떨까요?{" "}
         </H2>
       </div>
     );

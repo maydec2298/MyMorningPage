@@ -1,5 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+// Hooks
+import { useNavigate } from "react-router-dom";
+// Components
+import styled from "styled-components";
 
 const Post = ({ post }) => {
   const navigate = useNavigate();

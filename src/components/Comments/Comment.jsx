@@ -1,7 +1,11 @@
+// Hooks
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+// Components
 import styled from "styled-components";
+import Button from "../UI/Button";
+// Store
 import {
   clearComment,
   globalEditModeToggle,
@@ -11,7 +15,6 @@ import {
   __deleteComment,
   __updateComment,
 } from "../../redux/modules/commentsSlice";
-import Button from "../UI/Button";
 
 const Comment = ({ comment }) => {
   const { id } = useParams();
@@ -118,11 +121,6 @@ const CommentDiv = styled.div`
   width: 60%;
 `;
 
-const ButtonBox = styled.div`
-  /* text-align: right; */
-  width: 25%;
-  /* border: 1px solid red; */
-`;
 const MarginSpan = styled.span`
   margin-left: 10px;
 `;

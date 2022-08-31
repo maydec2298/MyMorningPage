@@ -1,6 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+// Hooks
 import { useNavigate } from "react-router-dom";
+// Components
+import styled from "styled-components";
+// 기타 라이브러리
 import { BsBook } from "react-icons/bs";
 
 const Logo = () => {

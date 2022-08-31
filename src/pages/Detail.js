@@ -1,7 +1,7 @@
 // Hooks
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 // Components
 import Layout from "../components/UI/Layout";
 import Container from "../components/UI/Container";

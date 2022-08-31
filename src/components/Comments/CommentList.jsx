@@ -1,13 +1,13 @@
 // Hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 // Components
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 // Store
 import { __getComments } from "../../redux/modules/commentsSlice";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
 
 const CommentList = () => {
   const { id } = useParams();

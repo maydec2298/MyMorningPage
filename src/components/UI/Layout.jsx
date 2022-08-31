@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import Logo from './Logo';
-import TitleHeader from './TitleHeader';
+import styled from "styled-components";
+// Components
+import Logo from "./Logo";
+import TitleHeader from "./TitleHeader";
 
 const Layout = (props) => {
   return (

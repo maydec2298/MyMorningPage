@@ -1,8 +1,11 @@
-import { useDispatch } from 'react-redux';
-import useInput from '../../hooks/useInput';
-import styled from 'styled-components';
-import Button from '../UI/Button';
-import { __addComment } from '../../redux/modules/commentsSlice';
+// Hooks
+import { useDispatch } from "react-redux";
+import useInput from "../../hooks/useInput";
+// Components
+import styled from "styled-components";
+import Button from "../UI/Button";
+// Store
+import { __addComment } from "../../redux/modules/commentsSlice";
 
 const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
@@ -28,13 +31,25 @@ const CommentForm = ({ postId }) => {
         <GridDiv>
           <InputDiv>
             <LabelDiv>닉네임</LabelDiv>
-            <Input type='text' onChange={onChangeNameIdHandler} value={userId} maxLength={'5'} required />
+            <Input
+              type="text"
+              onChange={onChangeNameIdHandler}
+              value={userId}
+              maxLength={"5"}
+              required
+            />
           </InputDiv>
           <InputDiv>
             <LabelDiv>댓글</LabelDiv>
-            <TextArea name='content' onChange={onChangeContentHandler} value={content} required maxLength={'100'}></TextArea>
+            <TextArea
+              name="content"
+              onChange={onChangeContentHandler}
+              value={content}
+              required
+              maxLength={"100"}
+            ></TextArea>
             <ButtonDiv>
-              <Button type='submit' add>
+              <Button type="submit" add>
                 작성
               </Button>
             </ButtonDiv>

@@ -1,14 +1,17 @@
+// Hooks
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// Components
 import styled from "styled-components";
 import Button from "../UI/Button";
+// Store
 import { __deletePost } from "../../redux/modules/postsSlice";
 import {
   clearPost,
   __getPostById,
   __updatePost,
 } from "../../redux/modules/postSlice";
-import { useEffect, useState } from "react";
 
 const PostDetail = ({ editMode, setEditMode, postId }) => {
   const dispatch = useDispatch();
@@ -51,43 +54,43 @@ const PostDetail = ({ editMode, setEditMode, postId }) => {
     <PostDetailBox>
       <TitleDiv>{post.title}</TitleDiv>
       <IdBox>작성자: {post.userId}</IdBox>
-      {!editMode ? (
-        <ContentDiv>
-          <TextArea
-            type="text"
-            value={updateContent}
-            onChange={(event) => {
-              setUpdateContent(event.target.value);
-            }}
-          />
-        </ContentDiv>
-      ) : (
-        <TextArea type="text">{post.content}</TextArea>
-      )}
-      <ButtonDiv>
-        {!editMode ? (
-          <>
-            <Button edit onClick={() => setEditMode(!editMode)}>
-              수정
-            </Button>
-            <Button delete onClick={onDeleteHandler}>
-              삭제
-            </Button>
-          </>
-        ) : (
-          <>
+      {editMode ? (
+        <>
+          <ContentDiv>
+            <TextArea
+              type="text"
+              value={updateContent}
+              onChange={(event) => {
+                setUpdateContent(event.target.value);
+              }}
+            />
+          </ContentDiv>
+          <ButtonDiv>
             <Button edit onClick={() => setEditMode(!editMode)}>
               취소
             </Button>
             <Button delete onClick={onSaveHandler}>
               완료
             </Button>
-          </>
-        )}
-      </ButtonDiv>
+          </ButtonDiv>
+        </>
+      ) : (
+        <>
+          <ContentDiv type="text">{post.content}</ContentDiv>
+          <ButtonDiv>
+            <Button edit onClick={() => setEditMode(!editMode)}>
+              수정
+            </Button>
+            <Button delete onClick={onDeleteHandler}>
+              취소
+            </Button>
+          </ButtonDiv>
+        </>
+      )}
     </PostDetailBox>
   );
 };
+
 const PostDetailBox = styled.div`
   width: 60%;
   margin: auto;
@@ -124,9 +127,7 @@ const TextArea = styled.textarea`
   border-radius: 10px;
   padding: 10px;
 `;
-const ContentBox = styled.div`
-  max-width: 800px;
-`;
+
 const IdBox = styled.div`
   font-weight: bold;
   text-align: right;

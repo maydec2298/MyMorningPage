@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import styled, { css } from 'styled-components';
+import React, { memo } from "react";
+import styled, { css } from "styled-components";
 
 const Button = ({ children, ...props }) => {
   return <StyledButton {...props}>{children}</StyledButton>;

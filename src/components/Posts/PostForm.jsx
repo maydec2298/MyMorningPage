@@ -1,6 +1,7 @@
+// Hooks
 import { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useInput from "../../hooks/useInput";
 // Components
 import styled from "styled-components";

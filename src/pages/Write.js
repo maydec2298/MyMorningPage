@@ -1,4 +1,4 @@
-import React from "react";
+// Components
 import Layout from "../components/UI/Layout";
 import Container from "../components/UI/Container";
 import PostForm from "../components/Posts/PostForm";

@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-// module import
+// modules
 import postSlice from "../modules/postSlice";
 import postsSlice from "../modules/postsSlice";
 import commentsSlice from "../modules/commentsSlice";
