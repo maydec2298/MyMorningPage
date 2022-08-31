@@ -1,24 +1,27 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+// import Components
 import Layout from "../components/UI/Layout";
 import Container from "../components/UI/Container";
 import Button from "../components/UI/Button";
 import PostList from "../components/Posts/PostList";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-
   return (
     <Layout title="My Morning Page">
-      <Button
-        add
-        onClick={() => {
-          navigate("/write");
-        }}
-      >
-        추가하기
-      </Button>
       <Container>
+        <TitleBox>
+          <TitleH2>글 목록</TitleH2>
+          <Button
+            add
+            onClick={() => {
+              navigate("/write");
+            }}
+          >
+            글쓰기
+          </Button>
+        </TitleBox>
         <PostList />
       </Container>
     </Layout>
@@ -26,3 +29,15 @@ const Home = () => {
 };
 
 export default Home;
+
+const TitleBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5px;
+`;
+
+const TitleH2 = styled.h2`
+  margin: 0;
+`;

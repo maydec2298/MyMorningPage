@@ -1,6 +1,6 @@
-import react, { useState } from 'react';
-import CommentForm from './CommentForm';
-import Comment from './Comment';
+import react, { useState } from "react";
+import CommentForm from "./CommentForm";
+import Comment from "./Comment";
 const CommentList = () => {
   return (
     <div>
