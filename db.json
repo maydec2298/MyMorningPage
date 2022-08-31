@@ -10,7 +10,7 @@
       "id": 2,
       "userId": "뾰로롱",
       "title": "hihi",
-      "content": "test2입니다."
+      "content": "test2입니다.ㅇㄹㅎㅇㄹㅎㅇㄹㅎㅇㄹㅎ"
     },
     {
       "id": 3,
@@ -25,10 +25,11 @@
       "id": 4
     },
     {
-      "userId": "sdf",
+      "userId": "안ㄴ여하세여",
       "title": "sdfs",
-      "content": "dfsdf",
-      "id": 5
+      "content": "수정할거야아아",
+      "id": 5,
+      "postId": 1
     },
     {
       "userId": "ㄴㅇㄹ",
@@ -58,57 +59,33 @@
   "comments": [
     {
       "postId": 1,
-      "id": 1,
-      "userId": "1에 댓글",
-      "content": "무플방지위원회"
-    },
-    {
-      "postId": 2,
-      "id": 1,
-      "userId": "userId",
-      "content": "commentContent"
-    },
-    {
-      "postId": 1,
       "id": 2,
       "userId": "userId",
-      "content": "commentContent"
+      "content": "수정"
     },
     {
-      "postId": 1,
+      "postId": "1",
       "userId": "sdf",
-      "content": "sdfsdfsdf",
+      "content": "sdfsdfsdfsdfsdfsdfsdfsdf",
       "id": 3
     },
     {
-      "postId": 2,
+      "postId": "2",
       "userId": "ㄴㅇㄹ",
-      "content": "ㄴㅇㄹㄴㅇㄹ",
+      "content": "이제됐나수정",
       "id": 4
     },
     {
-      "postId": 1,
-      "userId": "안ㄴ여하세여",
-      "content": "받내어래ㅑ넝래ㅑㅓ내야런ㅇㄹ",
+      "postId": "3",
+      "userId": "ㄴㅇㄹ",
+      "content": "왜 화면이 안바뀌냐오",
       "id": 5
     },
     {
-      "postId": 1,
-      "userId": "안ㄴ여하세여",
-      "content": "받내어래ㅑ넝래ㅑㅓ내야런ㅇㄹ",
+      "postId": "2",
+      "userId": "ㄴㅇㄹ",
+      "content": "왜 안돼지",
       "id": 6
-    },
-    {
-      "postId": 2,
-      "userId": "asdf",
-      "content": "sdfsdfsdf",
-      "id": 7
-    },
-    {
-      "postId": 2,
-      "userId": "sdfsdfsdf",
-      "content": "sdfsdfsdf",
-      "id": 8
     }
   ]
 }

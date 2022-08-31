@@ -54,13 +54,25 @@ export const __deleteComment = createAsyncThunk(
   }
 );
 
+export const __updateComment = createAsyncThunk(
+  "comments/updateComment",
+  async (payload, thunkAPI) => {
+    try {
+      axios.patch(`http://localhost:3001/comments/${payload.id}`, payload);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const initialState = {
   comments: [],
   isLoading: false,
   error: null,
 };
 
-const commentsSlice = createSlice({
+export const commentsSlice = createSlice({
   name: "comments",
   initialState,
   reducers: {
@@ -97,6 +109,16 @@ const commentsSlice = createSlice({
       );
     },
     [__addComment.rejected]: () => {},
+
+    // 댓글 수정
+    [__updateComment.pending]: () => {},
+    [__updateComment.fulfilled]: (state, action) => {
+      const target = state.comments.findIndex(
+        (comment) => comment.id === action.payload.id
+      );
+      state.comments.splice(target, 1, action.payload);
+    },
+    [__updateComment.rejected]: () => {},
   },
 });
 

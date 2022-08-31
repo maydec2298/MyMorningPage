@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
+  clearComment,
+  globalEditModeToggle,
+  __getComment,
+} from "../../redux/modules/commentSlice";
+import {
   __deleteComment,
-  __getComments,
+  __updateComment,
 } from "../../redux/modules/commentsSlice";
 import Button from "../UI/Button";
 
 const Comment = ({ comment }) => {
+  const { id } = useParams();
   const dispatch = useDispatch();
 
   const [editMode, setEditMode] = useState(false);
-  // const comment = useSelector((state) => state.comment.comment);
+  const [updateContent, setUpdateContent] = useState("");
 
-  const onDeleteHandler = (event) => {
-    event.stopPropagation();
+  const { content } = useSelector((state) => state.comment.comment);
+  const { globalEditMode } = useSelector((state) => state.comment);
+
+  useEffect(() => {
+    setUpdateContent(content);
+  }, [content]);
+
+  const onDeleteHandler = () => {
     const answer = window.confirm("이 댓글을 지울까요?");
     if (answer) {
       dispatch(__deleteComment(comment.id));
@@ -23,29 +36,60 @@ const Comment = ({ comment }) => {
     }
   };
 
+  const onSaveHandler = () => {
+    dispatch(
+      __updateComment({
+        id: +comment.id,
+        content: updateContent,
+        userId: comment.userId,
+        postId: id,
+      })
+    );
+    setEditMode(false);
+    dispatch(globalEditModeToggle(false));
+  };
+
+  const onEditHandler = () => {
+    setEditMode(true);
+    dispatch(__getComment(comment.id));
+    dispatch(globalEditModeToggle(true));
+  };
+
+  const onCancelHandler = () => {
+    setEditMode(false);
+    dispatch(clearComment());
+    dispatch(globalEditModeToggle(false));
+  };
+
   return (
     <CommentStyle>
       <NameDiv>
         <MarginSpan>{comment.userId}</MarginSpan>
       </NameDiv>
       <CommentDiv>
-        {!editMode ? (
+        {editMode ? (
           <>
-            <MarginSpan>{comment.content}</MarginSpan>
-            <Button edit onClick={() => setEditMode(!editMode)}>
-              수정
+            <Textarea
+              type="text"
+              value={updateContent}
+              onChange={(event) => setUpdateContent(event.target.value)}
+            />
+            <Button edit onClick={onCancelHandler}>
+              취소
             </Button>
-            <Button delete onClick={onDeleteHandler}>
-              삭제
+            <Button delete onClick={onSaveHandler}>
+              완료
             </Button>
           </>
         ) : (
           <>
-            <Textarea>{comment.content}</Textarea>
-            <Button edit onClick={() => setEditMode(!editMode)}>
-              취소
+            <MarginSpan>{comment.content}</MarginSpan>
+            <Button edit disabled={globalEditMode} onClick={onEditHandler}>
+              수정
             </Button>
-            <Button delete>완료</Button>
+            <Button delete disabled={globalEditMode} onClick={onDeleteHandler}>
+              삭제
+            </Button>
           </>
         )}
       </CommentDiv>

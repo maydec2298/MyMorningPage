@@ -1,5 +1,5 @@
 // Hooks
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 // Components
@@ -29,7 +29,7 @@ const Detail = () => {
           setEditMode={setEditMode}
           postId={id}
         ></PostDetail>
-        {editMode ? <></> : <CommentList postId={id}></CommentList>}
+        {editMode ? <></> : <CommentList />}
       </Container>
     </Layout>
   );

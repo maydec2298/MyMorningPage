@@ -28,8 +28,8 @@ const PostDetail = ({ editMode, setEditMode, postId }) => {
 
   const onDeleteHandler = (event) => {
     event.stopPropagation();
-    const result = window.confirm("이 게시글을 지울까요?");
-    if (result) {
+    const answer = window.confirm("이 게시글을 지울까요?");
+    if (answer) {
       dispatch(__deletePost(post.id));
       return navigate("/");
     } else {
