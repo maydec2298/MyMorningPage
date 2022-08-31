@@ -1,13 +1,15 @@
 // Hooks
-import React, { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import useInput from "../../hooks/useInput";
+
+import React, { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import useInput from '../../hooks/useInput';
+
 //UI 관련
-import styled from "styled-components";
-import Button from "../UI/Button";
+import styled from 'styled-components';
+import Button from '../UI/Button';
 // 리덕스 관련
-import { clearTodo, __addPost } from "../../redux/modules/postsSlice";
+import { clearTodo, __addPost } from '../../redux/modules/postsSlice';
 
 const PostForm = () => {
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const PostForm = () => {
 
   useEffect(() => {
     if (!isSuccess) return;
-    if (isSuccess) navigate("/");
+    if (isSuccess) navigate('/');
 
     return () => dispatch(clearTodo());
   }, [dispatch, isSuccess, navigate]);
@@ -37,7 +39,7 @@ const PostForm = () => {
       })
     );
 
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -47,43 +49,21 @@ const PostForm = () => {
         <NameBox>
           <AllTitleFont>Name</AllTitleFont>
           <AllInputBox>
-            <NameInput
-              type="text"
-              value={userId}
-              name="userId"
-              onChange={onChangeUserIdHandler}
-              placeholder="닉네임을 입력해주세요.( 5자 이내 )"
-              required
-              maxLength={"5"}
-            />
+            <NameInput type='text' value={userId} name='userId' onChange={onChangeUserIdHandler} placeholder='닉네임을 입력해주세요.( 5자 이내 )' required maxLength={'5'} />
           </AllInputBox>
         </NameBox>
         {/* 제목 */}
         <TitleBox>
           <AllTitleFont>Title</AllTitleFont>
           <AllInputBox>
-            <TitleInput
-              type="text"
-              value={title}
-              onChange={onChangeTitleHandler}
-              placeholder="제목을 입력해주세요.( 50자 이내 )"
-              required
-              maxLength={"50"}
-            />
+            <TitleInput type='text' value={title} onChange={onChangeTitleHandler} placeholder='제목을 입력해주세요.( 50자 이내 )' required maxLength={'50'} />
           </AllInputBox>
         </TitleBox>
         {/* 내용 */}
         <ContentBox>
           <AllTitleFont>Content</AllTitleFont>
           <AllInputBox>
-            <ContentInput
-              type="text"
-              value={content}
-              onChange={onChangeContentHandler}
-              placeholder="내용을 입력해주세요.( 200자 이내 )"
-              required
-              maxLength={"200"}
-            />
+            <ContentInput type='text' value={content} onChange={onChangeContentHandler} placeholder='내용을 입력해주세요.( 200자 이내 )' required maxLength={'200'} />
           </AllInputBox>
         </ContentBox>
         {/* 버튼 */}
@@ -91,7 +71,7 @@ const PostForm = () => {
           <Button
             cancel
             onClick={useCallback(() => {
-              navigate("/");
+              navigate('/');
             }, [navigate])}
           >
             취소
@@ -112,7 +92,7 @@ const PostFormBox = styled.div`
 `;
 
 const AllTitleFont = styled.h3`
-  font-family: "IM_Hyemin-Bold";
+  font-family: 'IM_Hyemin-Bold';
   width: 150px;
   height: 30px;
   line-height: 30px;
@@ -145,7 +125,7 @@ const NameInput = styled.input`
   float: left;
   padding: 10px 0 10px 15px;
   font-size: 15px;
-  font-family: "IM_Hyemin-Regular";
+  font-family: 'IM_Hyemin-Regular';
 `;
 
 const TitleInput = styled.input`
@@ -156,7 +136,7 @@ const TitleInput = styled.input`
   margin-top: 17px;
   padding: 10px 15px;
   font-size: 15px;
-  font-family: "IM_Hyemin-Regular";
+  font-family: 'IM_Hyemin-Regular';
 `;
 
 const ContentInput = styled.textarea`
@@ -168,7 +148,7 @@ const ContentInput = styled.textarea`
   padding: 10px 15px;
   line-height: 1.8;
   font-size: 15px;
-  font-family: "IM_Hyemin-Regular";
+  font-family: 'IM_Hyemin-Regular';
 `;
 
 const FormButtonbox = styled.div`

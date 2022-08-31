@@ -1,5 +1,5 @@
-import CommentForm from "./CommentForm";
-import Comment from "./Comment";
+import CommentForm from './CommentForm';
+import Comment from './Comment';
 const CommentList = () => {
   return (
     <div>
