@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../UI/Button";
+import styled from 'styled-components';
+import Button from '../UI/Button';
 
 const PostDetail = ({ editMode, setEditMode, post }) => {
   return (
@@ -8,20 +8,21 @@ const PostDetail = ({ editMode, setEditMode, post }) => {
       {!editMode ? (
         <ContentDiv>{post.content}</ContentDiv>
       ) : (
-        <>/*여기에 수정을 눌렀을 때 보여질 input 태그 만들어주세요*/</>
+        <ContentDiv>
+          <TextArea type='text'>{post.content}</TextArea>
+        </ContentDiv>
       )}
       <ButtonDiv>
         <Button edit onClick={() => setEditMode(!editMode)}>
-          {editMode ? "취소" : "수정"}
+          {editMode ? '취소' : '수정'}
         </Button>
-        <Button delete>삭제</Button>
+        <Button delete>{editMode ? '완료' : '삭제'}</Button>
       </ButtonDiv>
     </div>
   );
 };
 
 const TitleDiv = styled.h2`
-  width: 100%;
   margin: 20px auto;
   padding: 20px;
   text-align: center;
@@ -29,7 +30,6 @@ const TitleDiv = styled.h2`
 `;
 
 const ContentDiv = styled.div`
-  width: 100%;
   margin: auto;
   padding: 30px 20px;
   text-align: left;
@@ -39,5 +39,12 @@ const ContentDiv = styled.div`
 const ButtonDiv = styled.div`
   display: flex;
   justify-content: right;
+`;
+
+const TextArea = styled.textarea`
+  width: 99%;
+  height: 200px;
+  margin: auto;
+  resize: none;
 `;
 export default PostDetail;

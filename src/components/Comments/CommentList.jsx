@@ -1,11 +1,12 @@
 // Hooks
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 // Components
-import CommentForm from "./CommentForm";
-import Comment from "./Comment";
+import CommentForm from './CommentForm';
+import Comment from './Comment';
 // Store
-import { __getComments } from "../../redux/modules/commentsSlice";
+import { __getComments } from '../../redux/modules/commentsSlice';
+import styled from 'styled-components';
 
 const CommentList = ({ postId }) => {
   const dispatch = useDispatch();
@@ -21,17 +22,18 @@ const CommentList = ({ postId }) => {
     <div>
       <CommentForm postId={postId}></CommentForm>
       {comments.length === 0 ? (
-        <h2>
-          아직 댓글이 없어요😭
+        <H2>
+          아직 댓글이 없어요 😭
           <br />첫 댓글을 달아볼까요?
-        </h2>
+        </H2>
       ) : (
-        comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
-        ))
+        comments.map((comment) => <Comment key={comment.id} comment={comment} />)
       )}
     </div>
   );
 };
 
+const H2 = styled.h2`
+  text-align: center;
+`;
 export default CommentList;
