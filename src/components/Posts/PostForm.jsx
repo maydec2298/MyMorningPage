@@ -1,13 +1,12 @@
 // Hooks
-import React, { useCallback, useEffect } from "react";
-import { useNavigate, useSelector } from "react-router-dom";
+import React, { useCallback, useEffect, useSelector } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useInput from "../../hooks/useInput";
 //UI 관련
 import styled from "styled-components";
 import Button from "../UI/Button";
 // 리덕스 관련
-import { addPost } from "../../redux/modules/postsSlice";
 import { clearTodo, __addPost } from "../../redux/modules/postsSlice";
 
 const PostForm = () => {
