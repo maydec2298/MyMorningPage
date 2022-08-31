@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import produce from "immer";
-// import React from "react";
 // import { isDev, serverUrl } from ".";
 
 // const useImmerReducer = (reducer, initial) =>
@@ -16,6 +14,7 @@ import axios from "axios";
   }
 */
 
+// thunk 함수 정의
 export const __getPosts = createAsyncThunk(
   "posts/getPosts",
   async (payload, thunkAPI) => {

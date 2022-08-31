@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+// import { isDev, serverUrl } from ".";
 
 /* comment property -postId, Id, userId, content, editToggle 
     const comment = {
@@ -6,38 +8,61 @@ import { createSlice } from '@reduxjs/toolkit';
       id: "", 
       userId: userId, 
       content: commentContent, 
-      editToggle: false
     }
     */
 
+// thunk 함수 정의
+// 특정 postId를 가진 댓글만 가져오기
+export const __getComments = createAsyncThunk(
+  "comments/getComments",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/comments?postId=${payload}`
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __addComment = createAsyncThunk(
+  "comments/addComment",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/comments",
+        payload
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __deleteComment = createAsyncThunk(
+  "comments/deleteComment",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:3001/comments/${payload}`
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const initialState = {
-  comments: [
-    {
-      postId: 1,
-      id: 1,
-      userId: '1에 댓글',
-      content: '무플방지위원회',
-      editToggle: false,
-    },
-    {
-      postId: 2,
-      id: 1,
-      userId: 'userId',
-      content: 'commentContent',
-      editToggle: false,
-    },
-    {
-      postId: 1,
-      id: 2,
-      userId: 'userId',
-      content: 'commentContent',
-      editToggle: false,
-    },
-  ],
+  comments: [],
+  error: null,
 };
 
 const commentsSlice = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState,
   reducers: {
     addComment: (state, action) => {
@@ -52,10 +77,15 @@ const commentsSlice = createSlice({
 
     editToggleComment: (state, action) => {
       // payload: 댓글 id
-      state.comments = state.comments.map((comment) => (comment.id === action.payload ? { ...comment, editToggle: !comment.editToggle } : comment));
+      state.comments = state.comments.map((comment) =>
+        comment.id === action.payload
+          ? { ...comment, editToggle: !comment.editToggle }
+          : comment
+      );
     },
   },
 });
 
-export const { addComment, deleteComment, editToggleComment } = commentsSlice.actions;
+export const { addComment, deleteComment, editToggleComment } =
+  commentsSlice.actions;
 export default commentsSlice.reducer;
