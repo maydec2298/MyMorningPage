@@ -6,12 +6,11 @@ import { __addComment } from '../../redux/modules/commentsSlice';
 
 const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
-  const [userId, onChangeNameIdHandler] = useInput();
-  const [content, onChangeContentHandler] = useInput();
+  const [userId, setUserId, onChangeNameIdHandler] = useInput();
+  const [content, setContent, onChangeContentHandler] = useInput();
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
     dispatch(
       __addComment({
         postId: +postId,
@@ -19,6 +18,8 @@ const CommentForm = ({ postId }) => {
         content,
       })
     );
+    setUserId("");
+    setContent("");
   };
 
   return (

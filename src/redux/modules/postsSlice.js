@@ -17,7 +17,7 @@ import axios from "axios";
 // thunk 함수 정의
 export const __getPosts = createAsyncThunk(
   "posts/getPosts",
-  async (payload, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const { data } = await axios.get("http://localhost:3001/posts");
       return thunkAPI.fulfillWithValue(data);
@@ -97,9 +97,7 @@ const postsSlice = createSlice({
     // deletePost : postId가 일치하는 객체를 삭제
     [__deletePost.pending]: () => {},
     [__deletePost.fulfilled]: (state, action) => {
-      state.posts = state.posts.filter(
-        (post) => post.postId !== action.payload
-      );
+      state.posts = state.posts.filter((post) => post.id !== action.payload);
     },
     [__deletePost.rejected]: () => {},
   },
