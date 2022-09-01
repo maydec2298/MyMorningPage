@@ -3,7 +3,7 @@ import axios from "axios";
 // const isProduction = process.env.NODE_ENV === "production";
 // const productionURL = `${process.env.PRODUCTION_API_ENDPOINT}`;
 
-export const BASE_URL = process.env.REAET_APP_BASE_URL;
+export const BASE_URL = "https://mymorningpage.herokuapp.com";
 
 export const api = axios.create({
   baseURL: BASE_URL,
