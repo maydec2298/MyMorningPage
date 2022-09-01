@@ -6,7 +6,7 @@ export const __getPostById = createAsyncThunk(
   "posts/getPostById",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await api.get(`http://localhost:3001/posts/${payload}`);
+      const { data } = await api.get(`/posts/${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -18,7 +18,7 @@ export const __updatePost = createAsyncThunk(
   "posts/updatePost",
   async (payload, thunkAPI) => {
     try {
-      api.patch(`http://localhost:3001/posts/${payload.id}`, payload);
+      api.patch(`/posts/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

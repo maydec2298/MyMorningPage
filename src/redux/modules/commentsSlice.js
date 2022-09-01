@@ -17,9 +17,7 @@ export const __getComments = createAsyncThunk(
   "comments/getComments",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await api.get(
-        `http://localhost:3001/comments?postId=${payload}`
-      );
+      const { data } = await api.get(`/comments?postId=${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -31,10 +29,7 @@ export const __addComment = createAsyncThunk(
   "comments/addComment",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await api.post(
-        "http://localhost:3001/comments",
-        payload
-      );
+      const { data } = await api.post("/comments", payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -46,7 +41,7 @@ export const __deleteComment = createAsyncThunk(
   "comments/deleteComment",
   async (payload, thunkAPI) => {
     try {
-      await api.delete(`http://localhost:3001/comments/${payload}`);
+      await api.delete(`/comments/${payload}`);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,7 +53,7 @@ export const __updateComment = createAsyncThunk(
   "comments/updateComment",
   async (payload, thunkAPI) => {
     try {
-      api.patch(`http://localhost:3001/comments/${payload.id}`, payload);
+      api.patch(`/comments/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

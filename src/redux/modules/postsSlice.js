@@ -31,7 +31,7 @@ export const __addPost = createAsyncThunk(
   "posts/addPost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await api.post("http://localhost:3001/posts", payload);
+      const { data } = await api.post("/posts", payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -43,9 +43,7 @@ export const __deletePost = createAsyncThunk(
   "posts/deletePost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await api.delete(
-        `http://localhost:3001/posts/${payload}`
-      );
+      const { data } = await api.delete(`/posts/${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

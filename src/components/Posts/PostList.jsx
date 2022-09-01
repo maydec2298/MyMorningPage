@@ -14,6 +14,7 @@ const PostList = () => {
   useEffect(() => {
     dispatch(__getPosts());
   }, [dispatch]);
+  console.log(posts);
 
   if (posts.length === 0)
     return (
