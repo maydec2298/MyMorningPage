@@ -77,22 +77,27 @@ const Comment = ({ comment }) => {
               value={updateContent}
               onChange={(event) => setUpdateContent(event.target.value)}
             />
-            <Button edit onClick={onCancelHandler}>
-              취소
-            </Button>
-            <Button delete onClick={onSaveHandler}>
-              완료
-            </Button>
+            <ButtonDiv>
+              <Button edit onClick={onCancelHandler}>
+                취소
+              </Button>
+              <Button delete onClick={onSaveHandler}>
+                완료
+              </Button>
+            </ButtonDiv>
+
           </>
         ) : (
           <>
-            <MarginSpan>{comment.content}</MarginSpan>
-            <Button edit disabled={globalEditMode} onClick={onEditHandler}>
-              수정
-            </Button>
-            <Button delete disabled={globalEditMode} onClick={onDeleteHandler}>
-              삭제
-            </Button>
+              <MarginSpan>{comment.content}</MarginSpan>
+              <ButtonDiv>
+                <Button edit disabled={globalEditMode} onClick={onEditHandler}>
+                  수정
+                </Button>
+                <Button delete disabled={globalEditMode} onClick={onDeleteHandler}>
+                  삭제
+                </Button>
+              </ButtonDiv>
           </>
         )}
       </CommentDiv>
@@ -118,11 +123,22 @@ const NameDiv = styled.div`
 
 const CommentDiv = styled.div`
   text-align: left;
-  width: 60%;
+  width: 100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+`;
+
+const ButtonDiv = styled.div`
+  text-align: right;
+  /* width: 25%; */
+
 `;
 
 const MarginSpan = styled.span`
   margin-left: 10px;
+  width:60%;
 `;
 
 const Textarea = styled.textarea`

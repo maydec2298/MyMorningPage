@@ -78,7 +78,7 @@ const Input = styled.input`
 const TextArea = styled.textarea`
   outline: none;
   border-radius: 10px;
-  width: 400px;
+  width: 70%;
   height: 50px;
   resize: none;
   padding: 2px 10px;
@@ -97,6 +97,6 @@ const LabelDiv = styled.div`
 `;
 const ButtonDiv = styled.div`
   text-align: right;
-  margin-left: 35px;
+  width:20%;
 `;
 export default CommentForm;

@@ -33,7 +33,7 @@ export default Home;
 
 const TitleBox = styled.div`
   width: 60%;
-  margin: auto;
+  margin: 10px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

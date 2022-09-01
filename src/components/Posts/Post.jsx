@@ -23,11 +23,14 @@ const Post = ({ post }) => {
 const ContainerDiv = styled.div`
   width: 60%;
   display: flex;
-  margin: 20px auto;
-  padding: 20px 0;
+  margin: auto;
+  padding: 30px 0;
   justify-content: center;
   border-bottom: 1px solid lightblue;
   cursor: pointer;
+  &:hover{
+    background-color:#f3f3f3;
+  }
 `;
 const SpanTitle = styled.div`
   width: 400px;
