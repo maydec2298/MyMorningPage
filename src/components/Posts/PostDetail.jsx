@@ -1,23 +1,19 @@
 // Hooks
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // Components
-import styled from "styled-components";
-import Button from "../UI/Button";
+import styled from 'styled-components';
+import Button from '../UI/Button';
 // Store
-import { __deletePost } from "../../redux/modules/postsSlice";
-import {
-  clearPost,
-  __getPostById,
-  __updatePost,
-} from "../../redux/modules/postSlice";
+import { __deletePost } from '../../redux/modules/postsSlice';
+import { clearPost, __getPostById, __updatePost } from '../../redux/modules/postSlice';
 
 const PostDetail = ({ editMode, setEditMode, postId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [updateContent, setUpdateContent] = useState("");
+  const [updateContent, setUpdateContent] = useState('');
   const post = useSelector((state) => state.post.post);
 
   useEffect(() => {
@@ -31,10 +27,10 @@ const PostDetail = ({ editMode, setEditMode, postId }) => {
 
   const onDeleteHandler = (event) => {
     event.stopPropagation();
-    const answer = window.confirm("이 게시글을 지울까요?");
+    const answer = window.confirm('이 게시글을 지울까요?');
     if (answer) {
       dispatch(__deletePost(post.id));
-      return navigate("/");
+      return navigate('/');
     } else {
       return;
     }
@@ -58,7 +54,7 @@ const PostDetail = ({ editMode, setEditMode, postId }) => {
         <>
           <ContentDiv>
             <TextArea
-              type="text"
+              type='text'
               value={updateContent}
               onChange={(event) => {
                 setUpdateContent(event.target.value);
@@ -76,13 +72,13 @@ const PostDetail = ({ editMode, setEditMode, postId }) => {
         </>
       ) : (
         <>
-          <ContentDiv type="text">{post.content}</ContentDiv>
+          <ContentDiv type='text'>{post.content}</ContentDiv>
           <ButtonDiv>
             <Button edit onClick={() => setEditMode(!editMode)}>
               수정
             </Button>
             <Button delete onClick={onDeleteHandler}>
-              취소
+              삭제
             </Button>
           </ButtonDiv>
         </>
