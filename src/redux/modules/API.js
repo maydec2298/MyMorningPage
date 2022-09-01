@@ -1,9 +1,6 @@
 import axios from "axios";
 
-const isProduction = process.env.NODE_ENV === "production";
-const productionURL = `${process.env.PRODUCTION_API_ENDPOINT}`;
-
-export const BASE_URL = isProduction ? productionURL : "http://localhost:3001";
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const api = axios.create({
   baseURL: BASE_URL,
