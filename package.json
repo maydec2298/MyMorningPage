@@ -29,10 +29,7 @@
     "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cross-env NODE_PATH=src yarn run build",
-    "dev": "NODE_ENV=development nodemon index.js",
-    "prod": "NODE_ENV=production node index.js",
-    "prod:compress": "NODE_ENV=production USE_COMPRESS=1 node index.js"
+    "heroku-postbuild": "cross-env NODE_PATH=src yarn run build"
   },
   "eslintConfig": {
     "extends": [
