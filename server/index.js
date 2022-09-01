@@ -1,17 +1,17 @@
-const jsonServer = require("json-server");
-const path = require("path");
+import { create, router as _router, defaults, bodyParser } from "json-server";
+import { resolve } from "path";
 
-const server = jsonServer.create();
-const router = jsonServer.router(path.resolve(__dirname + "/db.json"));
-const middlewares = jsonServer.defaults({
-  static: path.resolve(__dirname + "/../build/"),
+const server = create();
+const router = _router(resolve(__dirname + "/db.json"));
+const middlewares = defaults({
+  static: resolve(__dirname + "/../build/"),
 });
 
 const port = process.env.PORT || 3001;
 
 server.use(middlewares);
 
-server.use(jsonServer.bodyParser);
+server.use(bodyParser);
 
 server.use(router);
 server.listen(port, () => {
