@@ -1,27 +1,20 @@
 // Hooks
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 // Components
-import styled from "styled-components";
-import Button from "../UI/Button";
+import styled from 'styled-components';
+import Button from '../UI/Button';
 // Store
-import {
-  clearComment,
-  globalEditModeToggle,
-  __getComment,
-} from "../../redux/modules/commentSlice";
-import {
-  __deleteComment,
-  __updateComment,
-} from "../../redux/modules/commentsSlice";
+import { clearComment, globalEditModeToggle, __getComment } from '../../redux/modules/commentSlice';
+import { __deleteComment, __updateComment } from '../../redux/modules/commentsSlice';
 
 const Comment = ({ comment }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const [editMode, setEditMode] = useState(false);
-  const [updateContent, setUpdateContent] = useState("");
+  const [updateContent, setUpdateContent] = useState('');
 
   const { content } = useSelector((state) => state.comment.comment);
   const { globalEditMode } = useSelector((state) => state.comment);
@@ -31,7 +24,7 @@ const Comment = ({ comment }) => {
   }, [content]);
 
   const onDeleteHandler = () => {
-    const answer = window.confirm("이 댓글을 지울까요?");
+    const answer = window.confirm('이 댓글을 지울까요?');
     if (answer) {
       dispatch(__deleteComment(comment.id));
     } else {
@@ -72,11 +65,7 @@ const Comment = ({ comment }) => {
       <CommentDiv>
         {editMode ? (
           <>
-            <Textarea
-              type="text"
-              value={updateContent}
-              onChange={(event) => setUpdateContent(event.target.value)}
-            />
+            <Textarea type='text' value={updateContent} onChange={(event) => setUpdateContent(event.target.value)} />
             <ButtonDiv>
               <Button edit onClick={onCancelHandler}>
                 취소
@@ -85,19 +74,18 @@ const Comment = ({ comment }) => {
                 완료
               </Button>
             </ButtonDiv>
-
           </>
         ) : (
           <>
-              <MarginSpan>{comment.content}</MarginSpan>
-              <ButtonDiv>
-                <Button edit disabled={globalEditMode} onClick={onEditHandler}>
-                  수정
-                </Button>
-                <Button delete disabled={globalEditMode} onClick={onDeleteHandler}>
-                  삭제
-                </Button>
-              </ButtonDiv>
+            <MarginSpan>{comment.content}</MarginSpan>
+            <ButtonDiv>
+              <Button edit disabled={globalEditMode} onClick={onEditHandler}>
+                수정
+              </Button>
+              <Button delete disabled={globalEditMode} onClick={onDeleteHandler}>
+                삭제
+              </Button>
+            </ButtonDiv>
           </>
         )}
       </CommentDiv>
@@ -117,7 +105,7 @@ const NameDiv = styled.div`
   /* flex-grow: 2; */
   /* border: 1px dashed red; */
   margin-right: 30px;
-  width: 15%;
+  width: 20%;
   text-align: right;
 `;
 
@@ -125,20 +113,19 @@ const CommentDiv = styled.div`
   text-align: left;
   width: 100%;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ButtonDiv = styled.div`
   text-align: right;
   /* width: 25%; */
-
 `;
 
 const MarginSpan = styled.span`
   margin-left: 10px;
-  width:60%;
+  width: 60%;
 `;
 
 const Textarea = styled.textarea`
