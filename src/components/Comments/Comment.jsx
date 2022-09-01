@@ -129,7 +129,7 @@ const MarginSpan = styled.span`
 `;
 
 const Textarea = styled.textarea`
-  width: 90%;
+  width: 65%;
   resize: none;
 `;
 export default Comment;
