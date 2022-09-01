@@ -25,7 +25,7 @@ const CommentList = () => {
       <CommentForm postId={id}></CommentForm>
       {comments.length === 0 ? (
         <H2>
-          아직 댓글이 없어요
+          아직 댓글이 없어요.
           <br />첫 댓글을 달아볼까요? ≡≡≡=(ﾉTдT)ﾉ
         </H2>
       ) : (

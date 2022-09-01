@@ -1,12 +1,6 @@
 {
   "posts": [
     {
-      "id": 1,
-      "userId": "으아아",
-      "title": "안녕하세요",
-      "content": "test입니다.ㄴㅇㄹㄴㅇㄹ"
-    },
-    {
       "id": 2,
       "userId": "뾰로롱",
       "title": "hihi",
@@ -23,13 +17,6 @@
       "title": "sdfs",
       "content": "dfsdf",
       "id": 4
-    },
-    {
-      "userId": "안ㄴ여하세여",
-      "title": "sdfs",
-      "content": "수정할거야아아",
-      "id": 5,
-      "postId": 1
     },
     {
       "userId": "ㄴㅇㄹ",
@@ -54,32 +41,20 @@
       "title": "sdfsdfsdf",
       "content": "sdfsdf",
       "id": 9
+    },
+    {
+      "userId": "sdf",
+      "title": "sdfsdf",
+      "content": "sdfsdfsdf",
+      "id": 10
     }
   ],
   "comments": [
-    {
-      "postId": 1,
-      "id": 2,
-      "userId": "userId",
-      "content": "수정"
-    },
-    {
-      "postId": "1",
-      "userId": "sdf",
-      "content": "sdfsdfsdfsdfsdfsdfsdfsdf",
-      "id": 3
-    },
     {
       "postId": "2",
       "userId": "ㄴㅇㄹ",
       "content": "이제됐나수정",
       "id": 4
-    },
-    {
-      "postId": "3",
-      "userId": "ㄴㅇㄹ",
-      "content": "왜 화면이 안바뀌냐오",
-      "id": 5
     },
     {
       "postId": "2",
