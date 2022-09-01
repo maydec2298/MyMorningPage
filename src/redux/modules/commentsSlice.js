@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { api } from "./API";
 // import { isDev, serverUrl } from ".";
 
 /* comment property -postId, Id, userId, content, editToggle 
@@ -17,7 +17,7 @@ export const __getComments = createAsyncThunk(
   "comments/getComments",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
+      const { data } = await api.get(
         `http://localhost:3001/comments?postId=${payload}`
       );
       return thunkAPI.fulfillWithValue(data);
@@ -31,7 +31,7 @@ export const __addComment = createAsyncThunk(
   "comments/addComment",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post(
+      const { data } = await api.post(
         "http://localhost:3001/comments",
         payload
       );
@@ -46,7 +46,7 @@ export const __deleteComment = createAsyncThunk(
   "comments/deleteComment",
   async (payload, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3001/comments/${payload}`);
+      await api.delete(`http://localhost:3001/comments/${payload}`);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,7 +58,7 @@ export const __updateComment = createAsyncThunk(
   "comments/updateComment",
   async (payload, thunkAPI) => {
     try {
-      axios.patch(`http://localhost:3001/comments/${payload.id}`, payload);
+      api.patch(`http://localhost:3001/comments/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

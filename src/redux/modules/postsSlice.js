@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { api } from "./API";
 // import { isDev, serverUrl } from ".";
 
 // const useImmerReducer = (reducer, initial) =>
@@ -19,7 +19,7 @@ export const __getPosts = createAsyncThunk(
   "posts/getPosts",
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/posts");
+      const { data } = await api.get("/posts");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -31,7 +31,7 @@ export const __addPost = createAsyncThunk(
   "posts/addPost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post("http://localhost:3001/posts", payload);
+      const { data } = await api.post("http://localhost:3001/posts", payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -43,7 +43,7 @@ export const __deletePost = createAsyncThunk(
   "posts/deletePost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.delete(
+      const { data } = await api.delete(
         `http://localhost:3001/posts/${payload}`
       );
       return thunkAPI.fulfillWithValue(data);
